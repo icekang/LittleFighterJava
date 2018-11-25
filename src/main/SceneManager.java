@@ -11,9 +11,7 @@ public class SceneManager {
 	private static Stage primaryStage;
 	private static Scene menuScene;
 	
-	private static final Media START_SOUND = new Media(ClassLoader.getSystemResource("bgm/main.mp3").toString());
 	
-	static MediaPlayer startMP = new MediaPlayer(START_SOUND);
 	
 	public static void setMenuScene() {
 		Pane wholePane = new Pane();
@@ -30,16 +28,6 @@ public class SceneManager {
 		*/
 	}
 	
-	public static void playbgm(){
-		try{new Thread(() -> {
-			startMP = new MediaPlayer(START_SOUND);
-			startMP.setCycleCount(MediaPlayer.INDEFINITE);
-			startMP.play();
-		}).start();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}
 	
 	public static void setStage(Stage primaryStage) {
 		SceneManager.primaryStage = primaryStage;

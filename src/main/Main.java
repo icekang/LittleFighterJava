@@ -24,7 +24,6 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		SceneManager.setStage(primaryStage);
 		SceneManager.setMenuScene();
-		SceneManager.playbgm();
 		
 		primaryStage.setTitle("Little Fighter");
 		primaryStage.setResizable(false);
