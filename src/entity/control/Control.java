@@ -17,6 +17,11 @@ public class Control {
 	public static KeyCode attackPlayer2 = KeyCode.DIGIT5;
 	public static KeyCode jumpPlayer2 = KeyCode.DIGIT9;
 	
+	public static String toString(KeyCode keyCode) {
+		String keyName = keyCode.toString();
+		return keyName;
+	}
+	
 	public static KeyCode getMoveUpPlayer1() {
 		return moveUpPlayer1;
 	}
