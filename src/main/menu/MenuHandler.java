@@ -9,14 +9,23 @@ import javafx.scene.text.TextAlignment;
 import main.SceneManager;
 
 public class MenuHandler {
-	/*
+	
+	public static void exit() {
+		MenuComponent.getInstance().stopSound();
+		System.exit(0);
+	}
+	
 	public static void moveToControlsScene() {
 		MenuComponent.getInstance().stopSound();
 		MenuComponent.getInstance().startTransitionSound();
-		SceneManager.setGameScene(name, side);
-		moveCanvasBack();
-		MenuComponent.getInstance().resetName();
-	}*/
+		//SceneManager.setControlScene(name, side);
+	}
+	
+	public static void moveToGameScene() {
+		MenuComponent.getInstance().stopSound();
+		MenuComponent.getInstance().startTransitionSound();
+		//SceneManager.setControlScene(name, side);
+	}
 	
 	public static void drawBorder(Canvas canvas, Color color) {
 		GraphicsContext gc = canvas.getGraphicsContext2D();

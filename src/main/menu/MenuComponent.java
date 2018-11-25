@@ -22,8 +22,8 @@ public class MenuComponent {
 	
 	private static final Media START_SOUND = new Media(ClassLoader.getSystemResource("sounds/main.mp3").toString());
 	static MediaPlayer startMP = new MediaPlayer(START_SOUND);
-	//private static final Media TRANSITION_SOUND = new Media(ClassLoader.getSystemResource("sounds/transition.mp3").toString());
-	//static MediaPlayer transitionMP = new MediaPlayer(START_SOUND);
+	private static final Media TRANSITION_SOUND = new Media(ClassLoader.getSystemResource("sounds/transition.mp3").toString());
+	static MediaPlayer transitionMP = new MediaPlayer(TRANSITION_SOUND);
 	
 	private Pane backgroundPane;
 	private Canvas canvasVSMode;
@@ -90,6 +90,10 @@ public class MenuComponent {
 		canvasControls.setOnMouseExited(event -> MenuHandler.undrawBorder(canvasControls, "Controls"));
 		canvasExit.setOnMouseExited(event -> MenuHandler.undrawBorder(canvasExit, "Exit"));
 		
+		canvasVSMode.setOnMouseClicked(event -> MenuHandler.moveToGameScene());
+		canvasControls.setOnMouseClicked(event -> MenuHandler.moveToControlsScene());
+		canvasExit.setOnMouseClicked(event -> MenuHandler.exit());
+		
 		try { new Thread(() -> {
 			startMP = new MediaPlayer(START_SOUND);
 			startMP.setCycleCount(MediaPlayer.INDEFINITE);
@@ -107,12 +111,11 @@ public class MenuComponent {
 			startMP.stop();
 		}
 	}
-	/*
+	
 	public void startTransitionSound() {
-		transitionMP.setMute(SceneManager.isMuted());
 		transitionMP.setCycleCount(1);
 		transitionMP.play();
-	}*/
+	}
 	
 	public static MenuComponent getInstance() {
 		return instance;
