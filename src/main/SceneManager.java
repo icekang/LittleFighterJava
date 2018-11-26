@@ -14,20 +14,17 @@ public class SceneManager {
 	
 	
 	public static void setMenuScene() {
-		Pane wholePane = new Pane();
-		
-		wholePane.getChildren().add(MenuComponent.getInstance().getBackgroundPane());
-		
-		menuScene = new Scene(wholePane, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+		menuScene = new Scene(MenuComponent.getInstance().getBackgroundPane(), Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		primaryStage.setScene(menuScene);
-		/*
+		
 		primaryStage.setOnCloseRequest(event -> {
-			MenuComponent.getInstance().stopBackground();
 			MenuComponent.getInstance().stopSound();
 		});
-		*/
 	}
 	
+	public static void setControlsScene() {
+		//TODO - ทำอันนี้เร็ว
+	}
 	
 	public static void setStage(Stage primaryStage) {
 		SceneManager.primaryStage = primaryStage;
