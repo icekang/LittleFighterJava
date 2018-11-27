@@ -6,10 +6,12 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import main.menu.MenuComponent;
+import main.controls.ControlsComponent;
 
 public class SceneManager {
 	private static Stage primaryStage;
 	private static Scene menuScene;
+	private static Scene controlScene;
 	
 	
 	
@@ -22,8 +24,13 @@ public class SceneManager {
 		});
 	}
 	
-	public static void setControlsScene() {
-		//TODO - ทำอันนี้เร็ว
+	public static void setControlScene() {
+		controlScene = new Scene(ControlsComponent.getInstance().getBackgroundPane(), Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+		primaryStage.setScene(controlScene);
+		
+		primaryStage.setOnCloseRequest(event -> {
+			ControlsComponent.getInstance().stopSound();
+		});
 	}
 	
 	public static void setStage(Stage primaryStage) {

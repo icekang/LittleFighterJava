@@ -18,7 +18,7 @@ public class MenuHandler {
 	public static void moveToControlsScene() {
 		MenuComponent.getInstance().stopSound();
 		MenuComponent.getInstance().startTransitionSound();
-		//SceneManager.setControlScene(name, side);
+		SceneManager.setControlScene();
 	}
 	
 	public static void moveToGameScene() {
