@@ -3,6 +3,7 @@ package main.controls;
 import entity.control.Control;
 import javafx.application.Platform;
 import javafx.geometry.VPos;
+import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -11,10 +12,13 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
+import javafx.scene.control.Button;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import main.Main;
 import main.menu.MenuComponent;
 import java.util.ArrayList;
+import main.SceneManager;
 
 public class ControlsComponent {
 	public static ControlsComponent instance = new ControlsComponent();
@@ -24,6 +28,7 @@ public class ControlsComponent {
 
 	private Pane backgroundPane;
 	private ArrayList<KeyComponent> list;
+	private Button backButton;
 	public ControlsComponent() {
 		backgroundPane = new Pane();
 		list = new ArrayList<KeyComponent>();
@@ -44,7 +49,21 @@ public class ControlsComponent {
 		list.add(new KeyComponent(2,Control.JUMP,500,50,510,300,"JUMP"));
 		list.add(new KeyComponent(2,Control.ATTACK,500,50,510,360,"ATTACK"));
 		list.add(new KeyComponent(2,Control.ACTIVATE,500,50,510,420,"ACTIVATE"));
+		
+		backButton = new Button("Back to Menu");
+		backButton.setLayoutX(460);
+		backButton.setLayoutY(530);
+		backButton.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent t) {
+                ControlsComponent.getInstance().stopSound();
+                SceneManager.setMenuScene();
+            }
+        });
+		
 		backgroundPane.getChildren().addAll(list);
+		backgroundPane.getChildren().add(backButton);
 		
 		try { new Thread(() -> {
 			startMP = new MediaPlayer(START_SOUND);

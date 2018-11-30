@@ -1,13 +1,12 @@
 package main.controls;
 
 import entity.control.Control;
-
+import main.SceneManager;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
-import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.KeyEvent;
-import javafx.event.EventHandler;;
+import javafx.scene.Cursor;
 
 public class KeyComponent extends Pane {
 	private Button Keyname;
@@ -36,6 +35,18 @@ public class KeyComponent extends Pane {
 				Control.SETTING_PLAYER=this.player;
 				Control.SETTING_KEY=this.key_number;
 			}
+		);
+		
+		this.addEventFilter(MouseEvent.MOUSE_ENTERED, event -> 
+		    {
+			    SceneManager.getControlScene().setCursor(Cursor.HAND);
+		    }
+	    );
+		
+		this.addEventFilter(MouseEvent.MOUSE_EXITED, event -> 
+	        {
+		        SceneManager.getControlScene().setCursor(Cursor.DEFAULT);
+	        }
 		);
 		
 		this.addEventFilter(KeyEvent.KEY_PRESSED, event -> 

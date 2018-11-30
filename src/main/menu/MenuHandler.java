@@ -24,7 +24,7 @@ public class MenuHandler {
 	public static void moveToGameScene() {
 		MenuComponent.getInstance().stopSound();
 		MenuComponent.getInstance().startTransitionSound();
-		//SceneManager.setControlScene(name, side);
+		SceneManager.setCharSelectScene();
 	}
 	
 	public static void drawBorder(Canvas canvas, Color color) {

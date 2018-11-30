@@ -60,7 +60,7 @@ public class MenuComponent {
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.BASELINE);
 		gc.setFill(Color.WHITE);
-		gc.fillText("VSMode", canvasVSMode.getWidth() / 2, canvasVSMode.getHeight()* 4 / 5);
+		gc.fillText("Start", canvasVSMode.getWidth() / 2, canvasVSMode.getHeight()* 4 / 5);
 		
 		canvasControls.setTranslateX(Main.SCREEN_WIDTH / 2 - canvasControls.getWidth() / 2);
 		canvasControls.setTranslateY(imageLogo.getHeight() * 11 / 7);
@@ -86,7 +86,7 @@ public class MenuComponent {
 		canvasControls.setOnMouseEntered(event -> MenuHandler.drawBorder(canvasControls, Color.DARKORANGE));
 		canvasExit.setOnMouseEntered(event -> MenuHandler.drawBorder(canvasExit, Color.DARKORANGE));
 		
-		canvasVSMode.setOnMouseExited(event -> MenuHandler.undrawBorder(canvasVSMode, "VSMode"));
+		canvasVSMode.setOnMouseExited(event -> MenuHandler.undrawBorder(canvasVSMode, "Start"));
 		canvasControls.setOnMouseExited(event -> MenuHandler.undrawBorder(canvasControls, "Controls"));
 		canvasExit.setOnMouseExited(event -> MenuHandler.undrawBorder(canvasExit, "Exit"));
 		
