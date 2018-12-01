@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import main.menu.MenuComponent;
 import main.controls.ControlsComponent;
 import main.charac.CharComponent;
+import entity.character.allList;
 
 public class SceneManager {
 	private static Stage primaryStage;
@@ -31,6 +32,10 @@ public class SceneManager {
 		return controlScene;
 	}
 	
+	public static Scene getCharScene() {
+		return charScene;
+	}
+	
 	public static void setControlScene() {
 		if(controlScene==null)
 			controlScene = new Scene(ControlsComponent.getInstance().getBackgroundPane(), Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
@@ -43,8 +48,10 @@ public class SceneManager {
 	
 	public static void setCharSelectScene() {
 		if(charScene==null)
-			menuScene = new Scene(CharComponent.getInstance().getBackgroundPane(), Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
-		primaryStage.setScene(menuScene);
+			charScene = new Scene(CharComponent.getInstance().getBackgroundPane(), Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+		allList.initPlayCard();
+		CharComponent.getInstance().newRound();
+		primaryStage.setScene(charScene);
 		
 		primaryStage.setOnCloseRequest(event -> {
 			CharComponent.getInstance().stopSound();

@@ -26,8 +26,8 @@ public class players {
 	public void changeChar(int way) {
 		cindex+=way;
 		if(cindex<0)
-			cindex+=characterList.charName.length;
-		cindex%=characterList.charName.length;
+			cindex+=allList.charList.length;
+		cindex%=allList.charList.length;
 	}
 	
 	public void changeTeam(int way) {

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import main.SceneManager;
 import main.controls.ControlsComponent;
 import main.controls.KeyComponent;
+import entity.character.allList;
 import entity.character.players;
 
 public class CharComponent {
@@ -29,16 +30,19 @@ public static CharComponent instance = new CharComponent();
 	
 	private static final Media START_SOUND = new Media(ClassLoader.getSystemResource("sounds/Controls.mp3").toString());
 	static MediaPlayer startMP = new MediaPlayer(START_SOUND);
-	private playCard gg;
 	private Pane backgroundPane;
+	
+	public void newRound() {
+		this.backgroundPane.getChildren().clear();
+		this.backgroundPane.getChildren().addAll(allList.playCardList);
+	}
+	
 	public CharComponent() {
 		backgroundPane = new Pane();
-		gg = new playCard(new players("ASD",0),0,0,100,100);
-		
-		backgroundPane.getChildren().add(gg);
 		backgroundPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> 
 			{
-				gg.handleKey(event.getCode());
+				for(int i=0;i<6;i++)
+					allList.playCardList[i].handleKey(event.getCode());
 			}
 		);
 		
@@ -49,7 +53,8 @@ public static CharComponent instance = new CharComponent();
                 Runnable updater = new Runnable() {
                     @Override
                     public void run() {
-                        gg.update();
+                    	for(int i=0;i<6;i++)
+        					allList.playCardList[i].update();
                     }
                 };
                 while (true) {
