@@ -21,7 +21,7 @@ public class playCardBot extends playCard {
 		super(p,posx,posy,width,height);
 		Cplus = new Button(">");
 		Cplus.setStyle("-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
-		Cplus.setLayoutX(76);
+		Cplus.setLayoutX(width - 29);
 		Cplus.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> this.player.changeChar(1));
 		Cplus.addEventFilter(MouseEvent.MOUSE_ENTERED, event -> SceneManager.getCharScene().setCursor(Cursor.HAND));
 		Cplus.addEventFilter(MouseEvent.MOUSE_EXITED, event -> SceneManager.getCharScene().setCursor(Cursor.DEFAULT));
@@ -34,7 +34,7 @@ public class playCardBot extends playCard {
 		
 		Teamplus = new Button(">");
 		Teamplus.setStyle("-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
-		Teamplus.setLayoutX(76);
+		Teamplus.setLayoutX(width - 29);
 		Teamplus.setLayoutY(this.getPrefHeight()-25);
 		Teamplus.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> this.player.changeTeam(1));
 		Teamplus.addEventFilter(MouseEvent.MOUSE_ENTERED, event -> SceneManager.getCharScene().setCursor(Cursor.HAND));
@@ -50,7 +50,7 @@ public class playCardBot extends playCard {
 		Activate = new Button("AC/DC");
 		Activate.setStyle("-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
 		Activate.setLayoutY(this.getPrefHeight()-50);
-		Activate.setPrefWidth(100);
+		Activate.setPrefWidth(width);
 		Activate.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> this.player.toggleActive());
 		Activate.addEventFilter(MouseEvent.MOUSE_ENTERED, event -> SceneManager.getCharScene().setCursor(Cursor.HAND));
 		Activate.addEventFilter(MouseEvent.MOUSE_EXITED, event -> SceneManager.getCharScene().setCursor(Cursor.DEFAULT));

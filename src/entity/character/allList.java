@@ -26,12 +26,12 @@ public class allList {
 	public static void initPlayCard() {
 		initPlayers();
 		for(int i=0;i<6;i++) {
-			int width = 170;
+			int width = 253, height = 339, playerMargin = width + 35;
+			double botRatio = 1.48;
 			if(i<2)
-				playCardList[i] = new playCard(playerList[i],Main.SCREEN_WIDTH / 2 - (200 - width) / 2 - width + 200*i,Main.SCREEN_HEIGHT / 20
-						, width, 228);
+				playCardList[i] = new playCard(playerList[i],Main.SCREEN_WIDTH / 2 - (playerMargin - width) / 2 - width + playerMargin*i,Main.SCREEN_HEIGHT / 20, width, height);
 			else
-				playCardList[i] = new playCardBot(playerList[i],0+200*(i-2),200,100,170);
+				playCardList[i] = new playCardBot(playerList[i],Main.SCREEN_WIDTH / 2 - ((width / botRatio) + 15) * 3 / 2 - width / botRatio / 2+ ((width / botRatio) + 15)*(i-2),Main.SCREEN_HEIGHT * 12 / 20, width / botRatio, height / botRatio);
 		}
 	}
 }
