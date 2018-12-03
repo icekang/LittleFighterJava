@@ -1,5 +1,6 @@
 package entity.character;
 
+import main.Main;
 import main.charac.playCard;
 import main.charac.playCardBot;
 
@@ -25,8 +26,10 @@ public class allList {
 	public static void initPlayCard() {
 		initPlayers();
 		for(int i=0;i<6;i++) {
+			int width = 170;
 			if(i<2)
-				playCardList[i] = new playCard(playerList[i],0+200*i,0,100,150);
+				playCardList[i] = new playCard(playerList[i],Main.SCREEN_WIDTH / 2 - (200 - width) / 2 - width + 200*i,Main.SCREEN_HEIGHT / 20
+						, width, 228);
 			else
 				playCardList[i] = new playCardBot(playerList[i],0+200*(i-2),200,100,170);
 		}

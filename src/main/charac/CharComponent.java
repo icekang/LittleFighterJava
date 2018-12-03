@@ -41,7 +41,7 @@ public static CharComponent instance = new CharComponent();
 		backgroundPane = new Pane();
 		backgroundPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> 
 			{
-				for(int i=0;i<6;i++)
+				for(int i=0;i<1;i++)
 					allList.playCardList[i].handleKey(event.getCode());
 			}
 		);

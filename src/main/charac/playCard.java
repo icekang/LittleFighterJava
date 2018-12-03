@@ -23,16 +23,16 @@ public class playCard extends Pane {
 		this.setPrefHeight(height);
 		Cname = new Button(allList.charList[p.getCindex()].getName());
 		Cname.setLayoutY(0);
-		Cname.setPrefWidth(100);
+		Cname.setPrefWidth(width);
 		Cname.setStyle("-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
 		Team = new Button(String.format("Team %d", p.getTeam()));
 		Team.setLayoutY(height-25);
-		Team.setPrefWidth(100);
+		Team.setPrefWidth(width);
 		Team.setStyle("-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
 		
 		iv=new ImageView();
-		iv.setFitHeight(100);
-		iv.setFitWidth(100);
+		iv.setFitHeight(height - 50);
+		iv.setFitWidth(width);
 		iv.setLayoutY(25);
 		
 		this.getChildren().addAll(Cname,Team,iv);
