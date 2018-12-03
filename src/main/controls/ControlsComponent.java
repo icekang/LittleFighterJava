@@ -4,6 +4,7 @@ import entity.control.Control;
 import javafx.application.Platform;
 import javafx.geometry.VPos;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -49,7 +50,10 @@ public class ControlsComponent {
 		Image imageBack = new Image(ClassLoader.getSystemResource("images/Back.png").toString());
 		gc.drawImage(imageBack, 0, 0);
 		
-		canvasBack.setOnMouseClicked(event -> SceneManager.setMenuScene());
+		canvasBack.setOnMouseEntered(event -> SceneManager.getControlScene().setCursor(Cursor.HAND));
+		canvasBack.setOnMouseClicked(event -> ControlsHandler.moveToMenuScene());
+		canvasBack.setOnMouseExited(event -> SceneManager.getControlScene().setCursor(Cursor.DEFAULT));
+		
 		Canvas control;
 		Canvas player1;
 		Canvas player2;
@@ -109,7 +113,7 @@ public class ControlsComponent {
 		list.add(new KeyComponent(2,Control.JUMP,prefWidth,50,keyX,y,"JUMP")); y += 60;
 		list.add(new KeyComponent(2,Control.ATTACK,prefWidth,50,keyX,y,"ATTACK")); y += 60;
 		list.add(new KeyComponent(2,Control.ACTIVATE,prefWidth,50,keyX,y,"ACTIVATE"));
-		
+		/*
 		backButton = new Button("Back to Menu");
 		backButton.setPrefWidth(300);
 		backButton.setPrefHeight(50);
@@ -124,9 +128,10 @@ public class ControlsComponent {
             	ControlsHandler.moveToMenuScene();
             }
         });
+        */
 		backgroundPane.getChildren().addAll(screen, canvasBack, control, player1, player2);
 		backgroundPane.getChildren().addAll(list);
-		backgroundPane.getChildren().add(backButton);
+		//backgroundPane.getChildren().add(backButton);
 		
 		try { new Thread(() -> {
 			startMP = new MediaPlayer(START_SOUND);

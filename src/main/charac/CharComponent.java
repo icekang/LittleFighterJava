@@ -4,6 +4,7 @@ import entity.control.Control;
 import javafx.application.Platform;
 import javafx.geometry.VPos;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -95,7 +96,9 @@ public static CharComponent instance = new CharComponent();
 		Image imageBack = new Image(ClassLoader.getSystemResource("images/Back.png").toString());
 		gc.drawImage(imageBack, 0, 0);
 		
+		canvasBack.setOnMouseEntered(event -> SceneManager.getCharScene().setCursor(Cursor.HAND));
 		canvasBack.setOnMouseClicked(event -> SceneManager.setMenuScene());
+		canvasBack.setOnMouseExited(event -> SceneManager.getCharScene().setCursor(Cursor.DEFAULT));
 		
 		backgroundPane.getChildren().addAll(screen, canvasBack);
 	}

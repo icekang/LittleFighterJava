@@ -38,6 +38,7 @@ public class playCardBot extends playCard {
 		
 		Teamplus = new Button();
 		Teamplus.setStyle("-fx-background-color: transparent;-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
+		Teamplus.setPrefWidth(width / 2);
 		Teamplus.setLayoutX(width/2);
 		Teamplus.setLayoutY(this.getPrefHeight()-25);
 		Teamplus.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> this.player.changeTeam(1));
@@ -46,7 +47,7 @@ public class playCardBot extends playCard {
 		
 		Teamminus = new Button();
 		Teamminus.setPrefWidth(width / 2);
-		Teamminus.setPrefHeight(height - 25);
+		Teamminus.setPrefHeight(25);
 		Teamminus.setStyle("-fx-background-color: transparent;-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
 		Teamminus.setLayoutY(this.getPrefHeight()-25);
 		Teamminus.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> this.player.changeTeam(-1));
