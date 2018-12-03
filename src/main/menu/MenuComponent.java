@@ -106,6 +106,16 @@ public class MenuComponent {
 		backgroundPane.getChildren().addAll(screen, canvasVSMode, canvasControls, canvasExit);
 	}
 	
+	public void playSound() {
+		try { new Thread(() -> {
+			startMP = new MediaPlayer(START_SOUND);
+			startMP.setCycleCount(MediaPlayer.INDEFINITE);
+			startMP.play();
+		}).start();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	public void stopSound() {
 		if(startMP != null) {
 			startMP.stop();

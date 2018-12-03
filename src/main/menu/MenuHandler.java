@@ -12,6 +12,7 @@ public class MenuHandler {
 	
 	public static void exit() {
 		MenuComponent.getInstance().stopSound();
+		MenuComponent.getInstance().startTransitionSound();
 		System.exit(0);
 	}
 	

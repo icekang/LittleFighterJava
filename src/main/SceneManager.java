@@ -21,7 +21,6 @@ public class SceneManager {
 		if(menuScene==null)
 			menuScene = new Scene(MenuComponent.getInstance().getBackgroundPane(), Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		primaryStage.setScene(menuScene);
-		
 		primaryStage.setOnCloseRequest(event -> {
 			MenuComponent.getInstance().stopSound();
 		});

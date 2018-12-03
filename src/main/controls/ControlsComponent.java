@@ -27,7 +27,9 @@ public class ControlsComponent {
 	
 	private static final Media START_SOUND = new Media(ClassLoader.getSystemResource("sounds/Controls.mp3").toString());
 	static MediaPlayer startMP = new MediaPlayer(START_SOUND);
-
+	private static final Media TRANSITION_SOUND = new Media(ClassLoader.getSystemResource("sounds/transition.mp3").toString());
+	static MediaPlayer transitionMP = new MediaPlayer(TRANSITION_SOUND);
+	
 	private Pane backgroundPane;
 	
 	private ArrayList<KeyComponent> list;
@@ -111,8 +113,7 @@ public class ControlsComponent {
         {
             @Override
             public void handle(MouseEvent t) {
-                ControlsComponent.getInstance().stopSound();
-                SceneManager.setMenuScene();
+            	ControlsHandler.moveToMenuScene();
             }
         });
 		backgroundPane.getChildren().addAll(screen, control, player1, player2);
@@ -154,6 +155,11 @@ public class ControlsComponent {
 	
 	public static ControlsComponent getInstance() {
 		return instance;
+	}
+	
+	public void startTransitionSound() {
+		transitionMP.setCycleCount(1);
+		transitionMP.play();
 	}
 	
 	public Pane getBackgroundPane() {
