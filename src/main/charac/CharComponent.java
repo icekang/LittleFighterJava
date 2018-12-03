@@ -18,6 +18,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import main.Main;
 import main.menu.MenuComponent;
+import main.menu.MenuHandler;
+
 import java.util.ArrayList;
 import main.SceneManager;
 import main.controls.ControlsComponent;
@@ -34,18 +36,19 @@ public static CharComponent instance = new CharComponent();
 	
 	public void newRound() {
 		this.backgroundPane.getChildren().clear();
+		drawBackground();
 		this.backgroundPane.getChildren().addAll(allList.playCardList);
 	}
 	
 	public CharComponent() {
 		backgroundPane = new Pane();
+		drawBackground();
 		backgroundPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> 
 			{
 				for(int i=0;i<1;i++)
 					allList.playCardList[i].handleKey(event.getCode());
 			}
 		);
-		
 		Thread thread = new Thread(new Runnable() {
 
             @Override
@@ -78,7 +81,24 @@ public static CharComponent instance = new CharComponent();
 			e.printStackTrace();
 		}
 	}
-	
+	private void drawBackground() {
+		Canvas screen = new Canvas(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+		GraphicsContext gc = screen.getGraphicsContext2D();
+		
+		Image imageBackground = new Image(ClassLoader.getSystemResource("images/MenuBackground.png").toString());
+		gc.drawImage(imageBackground, 0, 0);
+		
+		
+		Canvas canvasBack = new Canvas(68, 68);
+		canvasBack.setLayoutX(5);canvasBack.setLayoutY(5);
+		gc = canvasBack.getGraphicsContext2D();
+		Image imageBack = new Image(ClassLoader.getSystemResource("images/Back.png").toString());
+		gc.drawImage(imageBack, 0, 0);
+		
+		canvasBack.setOnMouseClicked(event -> SceneManager.setMenuScene());
+		
+		backgroundPane.getChildren().addAll(screen, canvasBack);
+	}
 	public static CharComponent getInstance() {
 		return instance;
 	}

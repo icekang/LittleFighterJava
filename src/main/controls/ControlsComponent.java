@@ -42,6 +42,14 @@ public class ControlsComponent {
 		
 		Image imageBackground = new Image(ClassLoader.getSystemResource("images/MenuBackground.png").toString());
 		gc.drawImage(imageBackground, 0, 0);
+		
+		Canvas canvasBack = new Canvas(68, 68);
+		canvasBack.setLayoutX(5);canvasBack.setLayoutY(5);
+		gc = canvasBack.getGraphicsContext2D();
+		Image imageBack = new Image(ClassLoader.getSystemResource("images/Back.png").toString());
+		gc.drawImage(imageBack, 0, 0);
+		
+		canvasBack.setOnMouseClicked(event -> SceneManager.setMenuScene());
 		Canvas control;
 		Canvas player1;
 		Canvas player2;
@@ -116,7 +124,7 @@ public class ControlsComponent {
             	ControlsHandler.moveToMenuScene();
             }
         });
-		backgroundPane.getChildren().addAll(screen, control, player1, player2);
+		backgroundPane.getChildren().addAll(screen, canvasBack, control, player1, player2);
 		backgroundPane.getChildren().addAll(list);
 		backgroundPane.getChildren().add(backButton);
 		

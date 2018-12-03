@@ -19,29 +19,35 @@ public class playCardBot extends playCard {
 	
 	public playCardBot(players p,double posx,double posy,double width,double height) {
 		super(p,posx,posy,width,height);
-		Cplus = new Button(">");
-		Cplus.setStyle("-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
-		Cplus.setLayoutX(width - 29);
+		Cplus = new Button();
+		Cplus.setPrefWidth(width / 2);
+		Cplus.setPrefHeight(height - 25);
+		Cplus.setStyle("-fx-background-color: transparent;-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
+		Cplus.setLayoutX(width/2);
 		Cplus.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> this.player.changeChar(1));
 		Cplus.addEventFilter(MouseEvent.MOUSE_ENTERED, event -> SceneManager.getCharScene().setCursor(Cursor.HAND));
 		Cplus.addEventFilter(MouseEvent.MOUSE_EXITED, event -> SceneManager.getCharScene().setCursor(Cursor.DEFAULT));
 		
-		Cminus = new Button("<");
-		Cminus.setStyle("-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
+		Cminus = new Button();
+		Cminus.setPrefWidth(width / 2);
+		Cminus.setPrefHeight(height - 25);
+		Cminus.setStyle("-fx-background-color: transparent;-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
 		Cminus.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> this.player.changeChar(-1));
 		Cminus.addEventFilter(MouseEvent.MOUSE_ENTERED, event -> SceneManager.getCharScene().setCursor(Cursor.HAND));
 		Cminus.addEventFilter(MouseEvent.MOUSE_EXITED, event -> SceneManager.getCharScene().setCursor(Cursor.DEFAULT));
 		
-		Teamplus = new Button(">");
-		Teamplus.setStyle("-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
-		Teamplus.setLayoutX(width - 29);
+		Teamplus = new Button();
+		Teamplus.setStyle("-fx-background-color: transparent;-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
+		Teamplus.setLayoutX(width/2);
 		Teamplus.setLayoutY(this.getPrefHeight()-25);
 		Teamplus.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> this.player.changeTeam(1));
 		Teamplus.addEventFilter(MouseEvent.MOUSE_ENTERED, event -> SceneManager.getCharScene().setCursor(Cursor.HAND));
 		Teamplus.addEventFilter(MouseEvent.MOUSE_EXITED, event -> SceneManager.getCharScene().setCursor(Cursor.DEFAULT));
 		
-		Teamminus = new Button("<");
-		Teamminus.setStyle("-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
+		Teamminus = new Button();
+		Teamminus.setPrefWidth(width / 2);
+		Teamminus.setPrefHeight(height - 25);
+		Teamminus.setStyle("-fx-background-color: transparent;-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
 		Teamminus.setLayoutY(this.getPrefHeight()-25);
 		Teamminus.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> this.player.changeTeam(-1));
 		Teamminus.addEventFilter(MouseEvent.MOUSE_ENTERED, event -> SceneManager.getCharScene().setCursor(Cursor.HAND));
