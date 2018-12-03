@@ -24,14 +24,15 @@ public class KeyComponent extends Pane {
 		this.setPrefWidth(width);
 		Keyname = new Button(lab);
 		Keyname.setLayoutX(0);Keyname.setLayoutY(0);Keyname.setMinWidth(0.5*width);Keyname.setPrefWidth(0.5*width);Keyname.setMaxWidth(0.5*width);Keyname.setMinHeight(height);Keyname.setPrefHeight(height);Keyname.setMaxHeight(height);
-		Keyname.setStyle("-fx-background-color : #FFFFFF;-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
+		Keyname.setStyle("-fx-background-color : #3A0808;-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;-fx-text-fill: white;");
 		Keyvalue = new Button();
 		Keyvalue.setLayoutX(0.5*width);Keyvalue.setLayoutY(0);Keyvalue.setPrefWidth(0.5*width);Keyvalue.setMinWidth(0.5*width);Keyvalue.setMaxWidth(0.5*width);Keyvalue.setPrefHeight(height);Keyvalue.setMinHeight(height);Keyvalue.setMaxHeight(height);
-		Keyvalue.setStyle("-fx-background-color : #FFFFFF;-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
+		Keyvalue.setStyle("-fx-background-color : #3A0808;-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;-fx-text-fill: white;");
 		this.getChildren().addAll(Keyname,Keyvalue);
 		
 		this.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> 
 			{
+				Keyvalue.setStyle("-fx-background-color : #881818;-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;-fx-text-fill: white;");
 				Control.SETTING_PLAYER=this.player;
 				Control.SETTING_KEY=this.key_number;
 			}
@@ -75,7 +76,7 @@ public class KeyComponent extends Pane {
 	
 	public void update() {
 		if(Control.SETTING_PLAYER==this.player&&Control.SETTING_KEY==this.key_number)
-			Keyvalue.setStyle("-fx-background-color : #3399FF");
+			Keyvalue.setStyle("-fx-background-color : #881818; -fx-text-fill: white;");
 		else
 			Keyvalue.setStyle("-fx-background-color : #FFFFFF");
 		this.Keyvalue.setText(Control.allkey[this.player][this.key_number].toString());

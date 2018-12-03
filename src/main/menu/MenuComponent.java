@@ -36,10 +36,10 @@ public class MenuComponent {
 		Canvas screen = new Canvas(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		GraphicsContext gc = screen.getGraphicsContext2D();
 		
-		Image imageBackground = new Image("images/MenuBackground.png");
+		Image imageBackground = new Image(ClassLoader.getSystemResource("images/MenuBackground.png").toString());
 		gc.drawImage(imageBackground, 0, 0);
 		
-		Image imageLogo = new Image("images/GameLogo.png");
+		Image imageLogo = new Image(ClassLoader.getSystemResource("images/GameLogo.png").toString());
 		gc.drawImage(imageLogo, Main.SCREEN_WIDTH / 2 - imageLogo.getWidth() / 2, 10);
 		
 		gc.setFont(Font.font("Minecraft", 40));

@@ -26,6 +26,7 @@ public class Main extends Application {
 		SceneManager.setMenuScene();
 		
 		primaryStage.setTitle("Little Fighter");
+		primaryStage.sizeToScene();
 		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
