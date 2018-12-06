@@ -47,7 +47,7 @@ public class playCard extends Pane {
 		if(player.isActive())
 			iv.setImage(allList.charList[player.getCindex()].getImage());
 		else
-			iv.setImage(new Image("images/not.jpg"));
+			iv.setImage(new Image("thumbs/not.jpg"));
 		Cname.setText(allList.charList[player.getCindex()].getName());
 		Team.setText(String.format("Team %d", player.getTeam()));
 	}

@@ -1,6 +1,7 @@
 package main;
 
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -8,6 +9,7 @@ import javafx.stage.Stage;
 import main.menu.MenuComponent;
 import main.controls.ControlsComponent;
 import main.charac.CharComponent;
+import main.arena.Arena;
 import entity.character.allList;
 
 public class SceneManager {
@@ -15,6 +17,7 @@ public class SceneManager {
 	private static Scene menuScene;
 	private static Scene controlScene;
 	private static Scene charScene;
+	private static Scene arenaScene;
 	
 	
 	public static void setMenuScene() {
@@ -23,6 +26,28 @@ public class SceneManager {
 		primaryStage.setScene(menuScene);
 		primaryStage.setOnCloseRequest(event -> {
 			MenuComponent.getInstance().stopSound();
+		});
+	}
+	
+	public static void setArena() {
+		if(arenaScene==null)
+		{
+			arenaScene = new Scene(Arena.getInstance().getBackgroundPane(), Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+			arenaScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> 
+			{
+				Arena.getInstance().hh(event.getCode());
+			});
+			arenaScene.addEventFilter(KeyEvent.KEY_RELEASED, event -> 
+			{
+				Arena.getInstance().ho(event.getCode());
+			});
+		}
+		allList.kList.clear();
+		allList.initAC();
+		Arena.getInstance().newArena();
+		primaryStage.setScene(arenaScene);
+		primaryStage.setOnCloseRequest(event -> {
+			Arena.getInstance().stopSound();
 		});
 	}
 	
@@ -47,7 +72,14 @@ public class SceneManager {
 	
 	public static void setCharSelectScene() {
 		if(charScene==null)
+		{
 			charScene = new Scene(CharComponent.getInstance().getBackgroundPane(), Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+			charScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> 
+			{
+				CharComponent.getInstance().hh(event.getCode());
+			}
+		);
+		}
 		allList.initPlayCard();
 		CharComponent.getInstance().newRound();
 		primaryStage.setScene(charScene);

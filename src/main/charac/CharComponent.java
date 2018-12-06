@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import main.Main;
 import main.menu.MenuComponent;
 import main.menu.MenuHandler;
+import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
 import main.SceneManager;
@@ -41,15 +42,14 @@ public static CharComponent instance = new CharComponent();
 		this.backgroundPane.getChildren().addAll(allList.playCardList);
 	}
 	
+	public void hh(KeyCode k) {
+		for(int i=0;i<6;i++)
+			allList.playCardList[i].handleKey(k);
+	}
+	
 	public CharComponent() {
 		backgroundPane = new Pane();
 		drawBackground();
-		backgroundPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> 
-			{
-				for(int i=0;i<1;i++)
-					allList.playCardList[i].handleKey(event.getCode());
-			}
-		);
 		Thread thread = new Thread(new Runnable() {
 
             @Override
@@ -100,7 +100,17 @@ public static CharComponent instance = new CharComponent();
 		canvasBack.setOnMouseClicked(event -> SceneManager.setMenuScene());
 		canvasBack.setOnMouseExited(event -> SceneManager.getCharScene().setCursor(Cursor.DEFAULT));
 		
-		backgroundPane.getChildren().addAll(screen, canvasBack);
+		Canvas canvasFront = new Canvas(68, 68);
+		canvasFront.setLayoutX(900);canvasFront.setLayoutY(5);
+		gc = canvasFront.getGraphicsContext2D();
+		//Image imageBack = new Image(ClassLoader.getSystemResource("images/Back.png").toString());
+		gc.drawImage(imageBack, 0, 0,imageBack.getWidth(),imageBack.getHeight(),imageBack.getWidth(),0,-imageBack.getWidth(),imageBack.getHeight());
+		
+		canvasFront.setOnMouseEntered(event -> SceneManager.getCharScene().setCursor(Cursor.HAND));
+		canvasFront.setOnMouseClicked(event -> {this.stopSound();SceneManager.setArena();});
+		canvasFront.setOnMouseExited(event -> SceneManager.getCharScene().setCursor(Cursor.DEFAULT));
+		
+		backgroundPane.getChildren().addAll(screen, canvasBack,canvasFront);
 	}
 	public static CharComponent getInstance() {
 		return instance;

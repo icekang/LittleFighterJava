@@ -3,23 +3,50 @@ package entity.character;
 import main.Main;
 import main.charac.playCard;
 import main.charac.playCardBot;
+import java.util.*;
+import main.arena.*;
 
 public class allList {
 	public static Character[] charList=new Character[]{
-			new Character("Woody","woody.jpg"),
-			new Character("Dennis","dennis.jpg"),
-			new Character("Scotty","scotty.jpg"),
-			new Character("Spock","spock.jpg"),
-			new Character("Stickman","stickman.jpg")};
+			new Character("Knight","knight.png"),
+			new Character("Jan","jan.png"),
+			new Character("Monk","monk.png"),
+			new Character("Sorcerer","sorcerer.png"),
+			new Character("Woody","woody.png")};
 	public static players[] playerList = new players[6];
+	public static String[] teamcol = new String[] {
+			"ff0000",
+			"ff00ff",
+			"3366cc",
+			"663300",
+			"009900",
+			"666633"
+		};
 	public static playCard[] playCardList = new playCard[6];
+	public static TreeSet kList = new TreeSet();
+	public static ArrayList al,hm,acc,skill;
+	
+	public static void initAC() {
+		al=new ArrayList();
+		hm=new ArrayList();
+		acc=new ArrayList();
+		skill=new ArrayList();
+		for(int i=0;i<6;i++) {
+			if(playerList[i].isActive())
+			{	
+				al.add(i);
+				hm.add(new HMbar(playerList[i],i));
+				acc.add(new ArenaChar(playerList[i]));
+			}
+		}
+	}
 	
 	public static void initPlayers() {
 		for(int i=0;i<6;i++) {
 			if(i<2)
-				playerList[i] = new players(String.format("Player %d", i+1),i);
+				playerList[i] = new players(String.format("Player %d", i+1),i,i);
 			else
-				playerList[i] = new players(String.format("Bot %d",i-1),i);
+				playerList[i] = new players(String.format("Bot %d",i-1),i,i);
 		}
 	}
 	
