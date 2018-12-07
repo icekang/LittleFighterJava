@@ -4,19 +4,21 @@ import skills.SkillDetail;
 
 public class Character {
 	
+	private static final ClassLoader CLASS_LOADER = Character.class.getClassLoader();
+	
 	private String name;
 	private Image image,jump,block,attack,s1,s2,dead,stand;
 	private SkillDetail atk,skill1,skill2;
 	
 	public Character(String name, String url) {
-		this.image = new Image("thumbs/"+url);
-		this.stand= new Image("stand/"+url);
-		this.jump = new Image("jump/"+url);
-		this.block = new Image("block/"+url);
-		this.attack = new Image("attack/"+url);
-		this.s1 = new Image("sk1/"+url);
-		this.s2 = new Image("sk2/"+url);
-		this.dead = new Image("dead/"+url);
+		this.image = new Image(CLASS_LOADER.getResourceAsStream("thumbs/"+url));
+		this.stand= new Image(CLASS_LOADER.getResourceAsStream("stand/"+url));
+		this.jump = new Image(CLASS_LOADER.getResourceAsStream("jump/"+url));
+		this.block = new Image(CLASS_LOADER.getResourceAsStream("block/"+url));
+		this.attack = new Image(CLASS_LOADER.getResourceAsStream("attack/"+url));
+		this.s1 = new Image(CLASS_LOADER.getResourceAsStream("sk1/"+url));
+		this.s2 = new Image(CLASS_LOADER.getResourceAsStream("sk2/"+url));
+		this.dead = new Image(CLASS_LOADER.getResourceAsStream("dead/"+url));
 		this.name = name;
 		
 		if(name.equals("Jan")) {

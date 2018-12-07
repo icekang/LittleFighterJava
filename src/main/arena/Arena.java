@@ -30,19 +30,23 @@ import main.charac.CharComponent;
 import main.controls.ControlsComponent;
 import main.controls.ControlsHandler;
 import main.controls.KeyComponent;
+import main.menu.MenuComponent;
 import javafx.scene.image.ImageView;
 import skills.*;
 
 public class Arena {
+	
+	private static final ClassLoader CLASS_LOADER = Arena.class.getClassLoader();
+	
 	public static Arena instance = new Arena();
 	
 	public static int arenaWidth = Main.SCREEN_WIDTH;
 	public static int arenaHeight = 400;
 	
-	private static final Media START_SOUND = new Media(ClassLoader.getSystemResource("sounds/Controls.mp3").toString());
-	static MediaPlayer startMP = new MediaPlayer(START_SOUND);
-	private static final Media TRANSITION_SOUND = new Media(ClassLoader.getSystemResource("sounds/transition.mp3").toString());
-	static MediaPlayer transitionMP = new MediaPlayer(TRANSITION_SOUND);
+	private Media START_SOUND;
+	static MediaPlayer startMP;
+	private Media TRANSITION_SOUND;
+	static MediaPlayer transitionMP;
 	
 	private Pane backgroundPane;
 	private ImageView iv;
@@ -59,6 +63,14 @@ public class Arena {
 	}
 	
 	public Arena() {
+		
+		try {
+			START_SOUND = new Media(CLASS_LOADER.getResource("sounds/main.mp3").toURI().toString());
+			TRANSITION_SOUND = new Media(CLASS_LOADER.getResource("sounds/Transition.mp3").toURI().toString());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		backgroundPane = new Pane();
 		iv = new ImageView();
 		iv.setFitHeight(Main.SCREEN_HEIGHT);

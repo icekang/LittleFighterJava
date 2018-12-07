@@ -24,18 +24,29 @@ import java.util.ArrayList;
 import main.SceneManager;
 
 public class ControlsComponent {
+	
+	private static final ClassLoader CLASS_LOADER = ControlsComponent.class.getClassLoader();
+	
 	public static ControlsComponent instance = new ControlsComponent();
 	
-	private static final Media START_SOUND = new Media(ClassLoader.getSystemResource("sounds/Controls.mp3").toString());
-	static MediaPlayer startMP = new MediaPlayer(START_SOUND);
-	private static final Media TRANSITION_SOUND = new Media(ClassLoader.getSystemResource("sounds/transition.mp3").toString());
-	static MediaPlayer transitionMP = new MediaPlayer(TRANSITION_SOUND);
+	private Media START_SOUND;
+	static MediaPlayer startMP;
+	private Media TRANSITION_SOUND;
+	static MediaPlayer transitionMP;
 	
 	private Pane backgroundPane;
 	
 	private ArrayList<KeyComponent> list;
 	private Button backButton;
 	public ControlsComponent() {
+		
+		try {
+			START_SOUND = new Media(CLASS_LOADER.getResource("sounds/Controls.mp3").toURI().toString());
+			TRANSITION_SOUND = new Media(CLASS_LOADER.getResource("sounds/Transition.mp3").toURI().toString());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		backgroundPane = new Pane();
 		
 		Canvas screen = new Canvas(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);

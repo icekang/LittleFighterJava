@@ -31,12 +31,14 @@ public class allList {
 		hm=new ArrayList();
 		acc=new ArrayList();
 		skill=new ArrayList();
+		int g=0;
 		for(int i=0;i<6;i++) {
 			if(playerList[i].isActive())
 			{	
 				al.add(i);
-				hm.add(new HMbar(playerList[i],i));
+				hm.add(new HMbar(playerList[i],g));
 				acc.add(new ArenaChar(playerList[i]));
+				g+=1;
 			}
 		}
 	}

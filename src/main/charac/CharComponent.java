@@ -32,12 +32,15 @@ import entity.character.allList;
 import entity.character.players;
 
 public class CharComponent {
-public static CharComponent instance = new CharComponent();
 	
-	private static final Media START_SOUND = new Media(ClassLoader.getSystemResource("sounds/Controls.mp3").toString());
-	static MediaPlayer startMP = new MediaPlayer(START_SOUND);
-	private static final Media TRANSITION_SOUND = new Media(ClassLoader.getSystemResource("sounds/transition.mp3").toString());
-	static MediaPlayer transitionMP = new MediaPlayer(TRANSITION_SOUND);
+	private static final ClassLoader CLASS_LOADER = CharComponent.class.getClassLoader();
+	
+	public static CharComponent instance = new CharComponent();
+	
+	private Media START_SOUND;
+	static MediaPlayer startMP;
+	private Media TRANSITION_SOUND;
+	static MediaPlayer transitionMP;
 	private Pane backgroundPane;
 	
 	private boolean active;
@@ -55,6 +58,14 @@ public static CharComponent instance = new CharComponent();
 	}
 	
 	public CharComponent() {
+		
+		try {
+			START_SOUND = new Media(CLASS_LOADER.getResource("sounds/Controls.mp3").toURI().toString());
+			TRANSITION_SOUND = new Media(CLASS_LOADER.getResource("sounds/Transition.mp3").toURI().toString());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		backgroundPane = new Pane();
 		drawBackground();
 		Thread thread = new Thread(new Runnable() {

@@ -16,14 +16,18 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import main.Main;
 import main.SceneManager;
+import skills.SkillDetail;
 
 public class MenuComponent {
+	
+	private static final ClassLoader CLASS_LOADER = MenuComponent.class.getClassLoader();
+	
 	public static MenuComponent instance = new MenuComponent();
 	
-	private static final Media START_SOUND = new Media(ClassLoader.getSystemResource("sounds/main.mp3").toString());
-	static MediaPlayer startMP = new MediaPlayer(START_SOUND);
-	private static final Media TRANSITION_SOUND = new Media(ClassLoader.getSystemResource("sounds/transition.mp3").toString());
-	static MediaPlayer transitionMP = new MediaPlayer(TRANSITION_SOUND);
+	private Media START_SOUND;
+	static MediaPlayer startMP;
+	private Media TRANSITION_SOUND;
+	static MediaPlayer transitionMP;
 	
 	private Pane backgroundPane;
 	private Canvas canvasVSMode;
@@ -31,6 +35,14 @@ public class MenuComponent {
 	private Canvas canvasExit;
 	
 	public MenuComponent() {
+		
+		try {
+			START_SOUND = new Media(CLASS_LOADER.getResource("sounds/main.mp3").toURI().toString());
+			TRANSITION_SOUND = new Media(CLASS_LOADER.getResource("sounds/Transition.mp3").toURI().toString());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		backgroundPane = new Pane();
 		
 		Canvas screen = new Canvas(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
