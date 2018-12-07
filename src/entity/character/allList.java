@@ -15,12 +15,12 @@ public class allList {
 			new Character("Woody","woody.png")};
 	public static players[] playerList = new players[6];
 	public static String[] teamcol = new String[] {
-			"ff0000",
-			"ff00ff",
-			"3366cc",
-			"663300",
-			"009900",
-			"666633"
+			"DC143C",
+			"6B8E23",
+			"48D1CC",
+			"9400D3",
+			"A0522D",
+			"696969"
 		};
 	public static playCard[] playCardList = new playCard[6];
 	public static TreeSet kList = new TreeSet();

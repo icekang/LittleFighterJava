@@ -26,7 +26,7 @@ public class players {
 		this.hp=500;
 		this.mp=100;
 		this.posx=ran.nextInt(950);
-		this.posy=ran.nextInt(400);
+		this.posy=82 + ran.nextInt(318);
 		this.posz=0;
 		this.bcd=0;
 		this.turn=1;
