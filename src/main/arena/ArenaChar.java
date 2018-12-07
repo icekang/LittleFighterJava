@@ -34,7 +34,9 @@ public class ArenaChar extends Pane {
 		//	return;
 		this.setLayoutX(pp.getPosx());
 		this.setLayoutY(600-pp.getPosy()-pp.getPosz());
-		if(pp.getJump()!=0)
+		if(pp.getStatus()==5)
+			iv.setImage(allList.charList[pp.getCindex()].getDead());
+		else if(pp.getJump()!=0)
 			iv.setImage(allList.charList[pp.getCindex()].getJump());
 		else if(pp.getStatus()==0)
 			iv.setImage(allList.charList[pp.getCindex()].getStand());
@@ -46,8 +48,6 @@ public class ArenaChar extends Pane {
 			iv.setImage(allList.charList[pp.getCindex()].getSk1());
 		else if(pp.getStatus()==4)
 			iv.setImage(allList.charList[pp.getCindex()].getSk2());
-		else if(pp.getStatus()==5)
-			iv.setImage(allList.charList[pp.getCindex()].getDead());
 		iv.setScaleX(pp.getTurn());
 	}
 }

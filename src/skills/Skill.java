@@ -54,8 +54,12 @@ public abstract class Skill extends Pane {
 		this.hitsound=endsound;
 		
 		try { new Thread(() -> {
-			MediaPlayer startMP = new MediaPlayer(startsound);
-			startMP.play();
+			try {
+				MediaPlayer startMP = new MediaPlayer(startsound);
+				startMP.play();
+			}catch(Exception e) {
+				
+			}
 		}).start();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -76,8 +80,12 @@ public abstract class Skill extends Pane {
 		dead=true;
 		if(this.hit) {
 			try { new Thread(() -> {
-				MediaPlayer startMP = new MediaPlayer(hitsound);
-				startMP.play();
+				try {
+					MediaPlayer startMP = new MediaPlayer(hitsound);
+					startMP.play();
+				}catch(Exception e) {
+				
+				}
 			}).start();
 			}catch(Exception e){
 				e.printStackTrace();

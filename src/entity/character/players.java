@@ -102,10 +102,35 @@ public class players {
 			posy=0;
 	}
 	
+	private int botMove() {
+		if(pNum<=1)
+			return -1;
+		Random ran = new Random();
+		int x=ran.nextInt(100);
+		if(x<4)
+			return 1;
+		if(x<8)
+			return 2;
+		if(x<12)
+			return 3;
+		if(x<16)
+			return 4;
+		if(x<20)
+			return 5;
+		if(x<40)
+			return 6;
+		if(x<60)
+			return 7;
+		if(x<80)
+			return 8;
+		return 9;
+	}
+	
 	public void handleCommand() {
-		if(pNum>1||this.status!=0)
+		if(this.status!=0)
 			return;
-		if(allList.kList.contains(Control.allkey[pNum][Control.ACTIVATE])&&allList.kList.contains(Control.allkey[pNum][Control.JUMP])&&this.jump==0) {
+		int y = this.botMove();
+		if((allList.kList.contains(Control.allkey[pNum][Control.ACTIVATE])&&allList.kList.contains(Control.allkey[pNum][Control.JUMP])||y==1)&&this.jump==0) {
 			SkillDetail sd = allList.charList[this.getCindex()].getSKILL2();
 			if(this.mp>=sd.mana) {
 				this.mp-=sd.mana;
@@ -117,7 +142,7 @@ public class players {
 				return;
 			}
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.ACTIVATE])&&allList.kList.contains(Control.allkey[pNum][Control.ATTACK])&&this.jump==0) {
+		if((allList.kList.contains(Control.allkey[pNum][Control.ACTIVATE])&&allList.kList.contains(Control.allkey[pNum][Control.ATTACK])||y==2)&&this.jump==0) {
 			SkillDetail sd = allList.charList[this.getCindex()].getSKILL1();
 			if(this.mp>=sd.mana) {
 				this.mp-=sd.mana;
@@ -129,7 +154,7 @@ public class players {
 				return;
 			}
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.ATTACK])&&this.jump==0) {
+		if((allList.kList.contains(Control.allkey[pNum][Control.ATTACK])||y==3)&&this.jump==0) {
 			SkillDetail sd = allList.charList[this.getCindex()].getATK();
 			PointSkill x = new PointSkill(team,sd.damage,turn,sd.mana,sd.body,sd.hit,posx+42+sd.range*turn,posy-42,posz,sd.rx,sd.ry,sd.rz,sd.blockable,sd.effdu,sd.startsound,sd.hitsound);
 			allList.skill.add(x);
@@ -138,26 +163,26 @@ public class players {
 			this.timeout=10;
 			return;
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.BLOCK])&&this.jump==0&&this.bcd==0) {
+		if((allList.kList.contains(Control.allkey[pNum][Control.BLOCK])||y==4)&&this.jump==0&&this.bcd==0) {
 			this.status=1;
 			this.timeout=10;
 			this.bcd=30;
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.RIGHT])) {
+		if(allList.kList.contains(Control.allkey[pNum][Control.RIGHT])||y==6) {
 			this.turn=1;
 			this.move(10,0);
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.LEFT])) {
+		if(allList.kList.contains(Control.allkey[pNum][Control.LEFT])||y==7) {
 			this.turn=-1;
 			this.move(-10,0);
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.UP])) {
+		if(allList.kList.contains(Control.allkey[pNum][Control.UP])||y==8) {
 			this.move(0,10);
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.DOWN])) {
+		if(allList.kList.contains(Control.allkey[pNum][Control.DOWN])||y==9) {
 			this.move(0,-10);
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.JUMP])&&this.jump==0) {
+		if((allList.kList.contains(Control.allkey[pNum][Control.JUMP])||y==5)&&this.jump==0) {
 			this.jump=1;
 		}
 	}
