@@ -10,7 +10,9 @@ import javafx.geometry.VPos;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -44,6 +46,8 @@ public class Arena {
 	
 	private Pane backgroundPane;
 	private ImageView iv;
+	
+	private boolean fighting;
 
 	public void hh(KeyCode k) {
 		allList.kList.add(k);
@@ -70,6 +74,8 @@ public class Arena {
 			e.printStackTrace();
 		}
 		
+		fighting=true;
+		
 		Thread thread = new Thread(new Runnable() {
 
             @Override
@@ -77,6 +83,8 @@ public class Arena {
                 Runnable updater = new Runnable() {
                     @Override
                     public void run() {
+                    	if(!fighting)
+                    		return;
                     	for(int i=allList.skill.size()-1;i>=0;i--)
                     	{
                     		if(!((Skill)allList.skill.get(i)).isdead()) {
@@ -109,6 +117,21 @@ public class Arena {
                     		((ArenaChar)allList.acc.get(i)).gameUpdate();
                     		allList.playerList[(int)allList.al.get(i)].gameUpdate();
                     	}
+                    	
+                    	if(allList.hasWinner()==1) {
+                    		System.out.println("DRAW");
+        					Arena.getInstance().stopSound();
+        					SceneManager.setMenuScene();
+        					fighting=false;
+        				}
+        				else if(allList.hasWinner()==2)
+        				{
+        					System.out.println("WINNER");
+        					Arena.getInstance().stopSound();
+        					SceneManager.setMenuScene();
+        					fighting=false;
+        					
+        				}
                     }
                 };
                 while (true) {
@@ -129,6 +152,7 @@ public class Arena {
 		backgroundPane.getChildren().add(iv);
 		backgroundPane.getChildren().addAll(allList.hm);
 		backgroundPane.getChildren().addAll(allList.acc);
+		fighting=true;
 	}
 	
 	public static Arena getInstance() {
@@ -145,6 +169,12 @@ public class Arena {
 	
 	public void remChild(Node e) {
 		backgroundPane.getChildren().remove(e);
+	}
+	
+	public void startSound() {
+		if(startMP != null) {
+			startMP.play();
+		}
 	}
 	
 	public void stopSound() {

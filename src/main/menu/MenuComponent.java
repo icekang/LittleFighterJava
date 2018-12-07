@@ -94,14 +94,14 @@ public class MenuComponent {
 		canvasControls.setOnMouseClicked(event -> MenuHandler.moveToControlsScene());
 		canvasExit.setOnMouseClicked(event -> MenuHandler.exit());
 		
-		try { new Thread(() -> {
+		/*try { new Thread(() -> {
 			startMP = new MediaPlayer(START_SOUND);
 			startMP.setCycleCount(MediaPlayer.INDEFINITE);
 			startMP.play();
 		}).start();
 		}catch(Exception e){
 			e.printStackTrace();
-		}
+		}*/
 		
 		backgroundPane.getChildren().addAll(screen, canvasVSMode, canvasControls, canvasExit);
 	}
@@ -123,8 +123,14 @@ public class MenuComponent {
 	}
 	
 	public void startTransitionSound() {
-		transitionMP.setCycleCount(1);
-		transitionMP.play();
+		try { new Thread(() -> {
+			transitionMP = new MediaPlayer(TRANSITION_SOUND);
+			transitionMP.setCycleCount(1);
+			transitionMP.play();
+		}).start();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public static MenuComponent getInstance() {

@@ -8,7 +8,6 @@ public class ControlsHandler {
 	public static void moveToMenuScene() {
 		ControlsComponent.getInstance().stopSound();
 		ControlsComponent.getInstance().startTransitionSound();
-		MenuComponent.getInstance().playSound();
 		SceneManager.setMenuScene();
 	}
 }

@@ -2,6 +2,8 @@ package skills;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import entity.character.*;
 import javafx.scene.image.ImageView;
 
@@ -25,9 +27,11 @@ public abstract class Skill extends Pane {
 	protected boolean dead,hit;
 	protected int tilldead,effdu;
 	
+	protected Media startsound,hitsound;
+	
 	protected ImageView iv;
 	
-	public Skill(int team,int damage,int turn,int mana,Image body,Image hitPic,int posx,int posy,int posz,int rx,int ry,int rz,boolean blockable,int effdu) {
+	public Skill(int team,int damage,int turn,int mana,Image body,Image hitPic,int posx,int posy,int posz,int rx,int ry,int rz,boolean blockable,int effdu,Media startsound,Media endsound) {
 		super();
 		this.team=team;
 		this.damage=damage;
@@ -46,6 +50,16 @@ public abstract class Skill extends Pane {
 		this.tilldead=0;
 		this.hit=false;
 		this.effdu=effdu;
+		this.startsound=startsound;
+		this.hitsound=endsound;
+		
+		try { new Thread(() -> {
+			MediaPlayer startMP = new MediaPlayer(startsound);
+			startMP.play();
+		}).start();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		iv= new ImageView();
 		iv.setFitHeight(60);
@@ -61,6 +75,13 @@ public abstract class Skill extends Pane {
 	public void sigDead() {
 		dead=true;
 		if(this.hit) {
+			try { new Thread(() -> {
+				MediaPlayer startMP = new MediaPlayer(hitsound);
+				startMP.play();
+			}).start();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			iv.setImage(hitPic);
 			tilldead=effdu;
 		}

@@ -3,6 +3,7 @@ package skills;
 import entity.character.players;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
 import main.Main;
 
 public class FloatSkill extends Skill {
@@ -10,8 +11,8 @@ public class FloatSkill extends Skill {
 	private int range;
 	private int velo;
 	
-	public FloatSkill(int team,int damage,int turn,int mana,Image body,Image hitPic,int posx,int posy,int posz,int rx,int ry,int rz,boolean blockable,int range,int velo,int effdu) {
-		super(team,damage,turn,mana,body,hitPic,posx,posy,posz,rx,ry,rz,blockable,effdu);
+	public FloatSkill(int team,int damage,int turn,int mana,Image body,Image hitPic,int posx,int posy,int posz,int rx,int ry,int rz,boolean blockable,int range,int velo,int effdu,Media startsound,Media endsound) {
+		super(team,damage,turn,mana,body,hitPic,posx,posy,posz,rx,ry,rz,blockable,effdu,startsound,endsound);
 		this.range=range;
 		this.velo=velo;
 		this.setPrefHeight(60);

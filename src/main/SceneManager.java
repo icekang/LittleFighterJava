@@ -23,6 +23,7 @@ public class SceneManager {
 	public static void setMenuScene() {
 		if(menuScene==null)
 			menuScene = new Scene(MenuComponent.getInstance().getBackgroundPane(), Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+		MenuComponent.getInstance().playSound();
 		primaryStage.setScene(menuScene);
 		primaryStage.setOnCloseRequest(event -> {
 			MenuComponent.getInstance().stopSound();
@@ -63,6 +64,7 @@ public class SceneManager {
 	public static void setControlScene() {
 		if(controlScene==null)
 			controlScene = new Scene(ControlsComponent.getInstance().getBackgroundPane(), Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+		ControlsComponent.getInstance().startSound();
 		primaryStage.setScene(controlScene);
 		
 		primaryStage.setOnCloseRequest(event -> {
@@ -80,6 +82,7 @@ public class SceneManager {
 			}
 		);
 		}
+		CharComponent.getInstance().startSound();
 		allList.initPlayCard();
 		CharComponent.getInstance().newRound();
 		primaryStage.setScene(charScene);

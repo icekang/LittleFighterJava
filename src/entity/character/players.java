@@ -109,7 +109,7 @@ public class players {
 			SkillDetail sd = allList.charList[this.getCindex()].getSKILL2();
 			if(this.mp>=sd.mana) {
 				this.mp-=sd.mana;
-				PointSkill x = new PointSkill(team,sd.damage,turn,sd.mana,sd.body,sd.hit,posx+42+sd.range*turn,posy-42,posz,sd.rx,sd.ry,sd.rz,sd.blockable,sd.effdu);
+				PointSkill x = new PointSkill(team,sd.damage,turn,sd.mana,sd.body,sd.hit,posx+42+sd.range*turn,posy-42,posz,sd.rx,sd.ry,sd.rz,sd.blockable,sd.effdu,sd.startsound,sd.hitsound);
 				allList.skill.add(x);
 				Arena.getInstance().addChild(x);
 				this.status=4;
@@ -121,7 +121,7 @@ public class players {
 			SkillDetail sd = allList.charList[this.getCindex()].getSKILL1();
 			if(this.mp>=sd.mana) {
 				this.mp-=sd.mana;
-				FloatSkill x = new FloatSkill(team,sd.damage,turn,sd.mana,sd.body,sd.hit,posx+42,posy-42,posz,sd.rx,sd.ry,sd.rz,sd.blockable,sd.range,sd.velo,sd.effdu);
+				FloatSkill x = new FloatSkill(team,sd.damage,turn,sd.mana,sd.body,sd.hit,posx+42,posy-42,posz,sd.rx,sd.ry,sd.rz,sd.blockable,sd.range,sd.velo,sd.effdu,sd.startsound,sd.hitsound);
 				allList.skill.add(x);
 				Arena.getInstance().addChild(x);
 				this.status=3;
@@ -131,7 +131,7 @@ public class players {
 		}
 		if(allList.kList.contains(Control.allkey[pNum][Control.ATTACK])&&this.jump==0) {
 			SkillDetail sd = allList.charList[this.getCindex()].getATK();
-			PointSkill x = new PointSkill(team,sd.damage,turn,sd.mana,sd.body,sd.hit,posx+42+sd.range*turn,posy-42,posz,sd.rx,sd.ry,sd.rz,sd.blockable,sd.effdu);
+			PointSkill x = new PointSkill(team,sd.damage,turn,sd.mana,sd.body,sd.hit,posx+42+sd.range*turn,posy-42,posz,sd.rx,sd.ry,sd.rz,sd.blockable,sd.effdu,sd.startsound,sd.hitsound);
 			allList.skill.add(x);
 			Arena.getInstance().addChild(x);
 			this.status=2;

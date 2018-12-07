@@ -133,15 +133,6 @@ public class ControlsComponent {
 		backgroundPane.getChildren().addAll(list);
 		//backgroundPane.getChildren().add(backButton);
 		
-		try { new Thread(() -> {
-			startMP = new MediaPlayer(START_SOUND);
-			startMP.setCycleCount(MediaPlayer.INDEFINITE);
-			startMP.play();
-		}).start();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
 		Thread thread = new Thread(new Runnable() {
 
             @Override
@@ -171,12 +162,29 @@ public class ControlsComponent {
 	}
 	
 	public void startTransitionSound() {
-		transitionMP.setCycleCount(1);
-		transitionMP.play();
+		try { new Thread(() -> {
+			transitionMP = new MediaPlayer(TRANSITION_SOUND);
+			transitionMP.setCycleCount(1);
+			transitionMP.play();
+		}).start();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public Pane getBackgroundPane() {
 		return backgroundPane;
+	}
+	
+	public void startSound() {
+		try { new Thread(() -> {
+			startMP = new MediaPlayer(START_SOUND);
+			startMP.setCycleCount(MediaPlayer.INDEFINITE);
+			startMP.play();
+		}).start();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void stopSound() {

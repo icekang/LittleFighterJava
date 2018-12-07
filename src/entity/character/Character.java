@@ -20,29 +20,29 @@ public class Character {
 		this.name = name;
 		
 		if(name.equals("Jan")) {
-			atk=new SkillDetail(30,0,25,40,10,35,0,true,"skills/janhit",3);
-			skill1=new SkillDetail(100,30,10,40,10,40,10,false,"skills/star",3);
-			skill2=new SkillDetail(200,60,50,50,50,200,0,false,"skills/exp1",10);
+			atk=new SkillDetail(30,0,25,40,10,35,0,true,"skills/janhit",3,"effect/janhit");
+			skill1=new SkillDetail(100,30,10,40,10,40,10,false,"skills/star",3,"effect/jancast");
+			skill2=new SkillDetail(200,60,50,50,50,200,0,false,"skills/exp1",10,"effect/janbomb");
 		}
 		if(name.equals("Knight")) {
-			atk=new SkillDetail(30,0,25,40,10,35,0,true,"skills/knighthit",3);
-			skill1=new SkillDetail(100,30,10,40,10,40,10,false,"skills/pur",3);
-			skill2=new SkillDetail(200,60,50,50,50,200,0,false,"skills/exp2",10);
+			atk=new SkillDetail(30,0,25,40,10,35,0,true,"skills/knighthit",3,"effect/knighthit");
+			skill1=new SkillDetail(100,30,10,40,10,40,10,false,"skills/pur",3,"effect/knightcast");
+			skill2=new SkillDetail(200,60,50,50,50,200,0,false,"skills/exp2",10,"effect/knightbomb");
 		}
 		if(name.equals("Monk")) {
-			atk=new SkillDetail(30,0,25,40,10,35,0,true,"skills/monkhit",3);
-			skill1=new SkillDetail(100,30,10,40,10,40,10,false,"skills/spark",3);
-			skill2=new SkillDetail(200,60,50,50,50,200,0,false,"skills/exp3",10);
+			atk=new SkillDetail(30,0,25,40,10,35,0,true,"skills/monkhit",3,"effect/monkhit");
+			skill1=new SkillDetail(100,30,10,40,10,40,10,false,"skills/spark",3,"effect/monkcast");
+			skill2=new SkillDetail(200,60,50,50,50,200,0,false,"skills/exp3",10,"effect/monkbomb");
 		}
 		if(name.equals("Sorcerer")) {
-			atk=new SkillDetail(30,0,25,40,10,35,0,true,"skills/sorcererhit",3);
-			skill1=new SkillDetail(100,30,10,40,10,40,10,false,"skills/ball",3);
-			skill2=new SkillDetail(200,60,50,50,50,200,0,false,"skills/exp4",10);
+			atk=new SkillDetail(30,0,25,40,10,35,0,true,"skills/sorcererhit",3,"effect/sorcererhit");
+			skill1=new SkillDetail(100,30,10,40,10,40,10,false,"skills/ball",3,"effect/sorcerercast");
+			skill2=new SkillDetail(200,60,50,50,50,200,0,false,"skills/exp4",10,"effect/sorcererbomb");
 		}
 		if(name.equals("Woody")) {
-			atk=new SkillDetail(30,0,25,40,10,35,0,true,"skills/woodyhit",3);
-			skill1=new SkillDetail(100,30,10,40,10,40,10,false,"skills/redp",3);
-			skill2=new SkillDetail(200,60,50,50,50,200,0,false,"skills/exp5",10);
+			atk=new SkillDetail(30,0,25,40,10,35,0,true,"skills/woodyhit",3,"effect/woodyhit");
+			skill1=new SkillDetail(100,30,10,40,10,40,10,false,"skills/redp",3,"effect/woodycast");
+			skill2=new SkillDetail(200,60,50,50,50,200,0,false,"skills/exp5",10,"effect/woodybomb");
 		}
 	}
 	

@@ -2,12 +2,13 @@ package skills;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
 import entity.character.*;
 
 public class PointSkill extends Skill {
 	
-	public PointSkill(int team,int damage,int turn,int mana,Image body,Image hitPic,int posx,int posy,int posz,int rx,int ry,int rz,boolean blockable,int effdu) {
-		super(team,damage,turn,mana,body,hitPic,posx,posy,posz,rx,ry,rz,blockable,effdu);
+	public PointSkill(int team,int damage,int turn,int mana,Image body,Image hitPic,int posx,int posy,int posz,int rx,int ry,int rz,boolean blockable,int effdu,Media startsound,Media endsound) {
+		super(team,damage,turn,mana,body,hitPic,posx,posy,posz,rx,ry,rz,blockable,effdu,startsound,endsound);
 		this.setLayoutX(posx-30);
 		this.setLayoutY(600-posy-posz-30);
 		this.hit=true;

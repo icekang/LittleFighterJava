@@ -61,4 +61,31 @@ public class allList {
 				playCardList[i] = new playCardBot(playerList[i],Main.SCREEN_WIDTH / 2 - ((width / botRatio) + 15) * 3 / 2 - width / botRatio / 2+ ((width / botRatio) + 15)*(i-2),Main.SCREEN_HEIGHT * 12 / 20, width / botRatio, height / botRatio);
 		}
 	}
+	
+	public static int hasWinner() {
+		TreeSet<Integer> tList = new TreeSet<>();
+		for(int i=0;i<6;i++)
+			if(playerList[i].isActive()&&playerList[i].getStatus()!=5)
+				tList.add(playerList[i].getTeam());
+		if(tList.size()>1)
+			return 0;
+		if(tList.size()==0)
+			return 1;
+		return 2;
+	}
+	
+	public static ArrayList<players> checkWinner() {
+		ArrayList<players> x =new ArrayList<>();
+		TreeSet<Integer> tList = new TreeSet<>();
+		for(int i=0;i<6;i++)
+			if(playerList[i].isActive()&&playerList[i].getStatus()!=5)
+				tList.add(playerList[i].getTeam());
+		if(tList.size()>1||tList.size()==0)
+			return x;
+		int gg=tList.iterator().next();
+		for(int i=0;i<6;i++)
+			if(playerList[i].getTeam()==gg)
+				x.add(playerList[i]);
+		return x;
+	}
 }
