@@ -98,8 +98,8 @@ public class players {
 		posy+=wayy;
 		if(posy>400)
 			posy=400;
-		if(posy<0)
-			posy=0;
+		if(posy<82)
+			posy=82;
 	}
 	
 	private int botMove() {

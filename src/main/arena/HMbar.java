@@ -24,12 +24,13 @@ public class HMbar extends Pane {
 		name.setLayoutX(7);name.setLayoutY(60);
 		name.setStyle("-fx-font-size: 5pt");
 		
-		setLayoutY(10);setLayoutX(164*pos+4);
+		setLayoutY(10);setLayoutX(164 * pos + 4);
 		setPrefHeight(80);
 		setPrefWidth(160);
-		setStyle("-fx-background-color: #"+allList.teamcol[p.getTeam()]+";");
-		hp=new ProgressBar();
+		setStyle("-fx-background-color: #" + allList.teamcol[p.getTeam()]+";");
+		hp = new ProgressBar();
 		hp.setProgress(0.5);
+		
 		//hp.setStyle("-fx-box-border: goldenrod;");
 		hp.setPrefWidth(95);hp.setPrefHeight(10);
 		hp.setLayoutX(60);hp.setLayoutY(15);
@@ -50,8 +51,26 @@ public class HMbar extends Pane {
 	}
 	
 	public void gameUpdate() {
+		hpUpdateColor();
+		mpUpdateColor();
 		hp.setProgress(pp.getHp()/500.0);
 		mp.setProgress(pp.getMp()/100.0);
+	}
+	
+	private void hpUpdateColor() {
+		if(hp.getProgress() > 0.75) {
+			hp.setStyle("-fx-accent: red");
+		}else if (hp.getProgress() > 0.35) {
+			hp.setStyle("-fx-accent: orange");
+		}else {
+			hp.setStyle("-fx-accent: yellow");
+		}
+	}
+	
+	private void mpUpdateColor() {
+		int g = (int) (35 * mp.getProgress());
+		int b = (int) (255 * mp.getProgress());
+		mp.setStyle("-fx-accent: rgb(0, "+ g +", "+ b +");");
 	}
 	
 }

@@ -60,10 +60,10 @@ public class Arena {
 	
 	public Arena() {
 		backgroundPane = new Pane();
-		iv=new ImageView();
+		iv = new ImageView();
 		iv.setFitHeight(Main.SCREEN_HEIGHT);
 		iv.setFitWidth(Main.SCREEN_WIDTH);
-		iv.setImage(new Image("images/arena.png"));
+		iv.setImage(new Image("images/arena2.png"));
 		
 		try { new Thread(() -> {
 			startMP = new MediaPlayer(START_SOUND);
