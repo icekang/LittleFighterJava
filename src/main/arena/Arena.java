@@ -51,6 +51,9 @@ public class Arena {
 	private Pane backgroundPane;
 	private ImageView iv;
 	
+	private Canvas resultCanvas;
+	private GraphicsContext gc;
+	
 	private boolean fighting;
 
 	public void hh(KeyCode k) {
@@ -77,6 +80,8 @@ public class Arena {
 		iv.setFitWidth(Main.SCREEN_WIDTH);
 		iv.setImage(new Image("images/arena2.png"));
 		
+		resultCanvas = new Canvas(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT / 2.5);
+		
 		try { new Thread(() -> {
 			startMP = new MediaPlayer(START_SOUND);
 			startMP.setCycleCount(MediaPlayer.INDEFINITE);
@@ -86,7 +91,7 @@ public class Arena {
 			e.printStackTrace();
 		}
 		
-		fighting=true;
+		fighting = true;
 		
 		Thread thread = new Thread(new Runnable() {
 
@@ -131,17 +136,62 @@ public class Arena {
                     	}
                     	
                     	if(allList.hasWinner()==1) {
+                    		resultCanvas.setVisible(true);
                     		System.out.println("DRAW");
+                    		resultCanvas.setLayoutX(0);
+        					resultCanvas.setLayoutY(Main.SCREEN_HEIGHT / 2 - resultCanvas.getHeight() / 2);
+        					gc = resultCanvas.getGraphicsContext2D();
+        					gc.setFill(Color.GRAY);
+        					gc.fillRect(0, 0, resultCanvas.getWidth(), resultCanvas.getHeight());
+        					
+        					gc.setFont(Font.font("Minecraft", 80));
+        					gc.setTextAlign(TextAlignment.CENTER);
+        					gc.setTextBaseline(VPos.BASELINE);
+        					gc.setFill(Color.RED);
+        					gc.fillText("DRAW" , resultCanvas.getWidth() / 2, resultCanvas.getHeight() / 2);
+        					
+        					backgroundPane.getChildren().clear();
+        					backgroundPane.getChildren().add(iv);
+        					backgroundPane.getChildren().add(resultCanvas);
+        					fighting = false;
+        					
         					Arena.getInstance().stopSound();
-        					SceneManager.setMenuScene();
-        					fighting=false;
+        					resultCanvas.setOnMouseClicked(event -> {
+        						resultCanvas.setVisible(false);
+        						backgroundPane.getChildren().clear();
+            					SceneManager.setMenuScene();
+        					});
         				}
         				else if(allList.hasWinner()==2)
         				{
-        					System.out.println("WINNER");
+        					resultCanvas.setVisible(true);
+        					//System.out.println("WINNER");
+        					resultCanvas.setLayoutX(0);
+        					resultCanvas.setLayoutY(Main.SCREEN_HEIGHT / 2 - resultCanvas.getHeight() / 2);
+        					gc = resultCanvas.getGraphicsContext2D();
+        					gc.setFill(Color.GRAY);
+        					gc.fillRect(0, 0, resultCanvas.getWidth(), resultCanvas.getHeight());
+        					
+        					gc.setFont(Font.font("Minecraft", 80));
+        					gc.setTextAlign(TextAlignment.CENTER);
+        					gc.setTextBaseline(VPos.BASELINE);
+        					gc.setFill(Color.RED);
+        					gc.fillText("WINNER" , resultCanvas.getWidth() / 2, resultCanvas.getHeight() / 2);
+        					
+        					gc.setFont(Font.font("Minecraft", 50));
+        					gc.fillText(allList.checkWinner().get(0).getName() , resultCanvas.getWidth() / 2, resultCanvas.getHeight() * 3 / 4);
+        					
+        					backgroundPane.getChildren().clear();
+        					backgroundPane.getChildren().add(iv);
+        					backgroundPane.getChildren().add(resultCanvas);
+        					fighting = false;
+        					
         					Arena.getInstance().stopSound();
-        					SceneManager.setMenuScene();
-        					fighting=false;
+        					resultCanvas.setOnMouseClicked(event -> {
+        						resultCanvas.setVisible(false);
+        						backgroundPane.getChildren().clear();
+            					SceneManager.setMenuScene();
+        					});
         					
         				}
                     }
