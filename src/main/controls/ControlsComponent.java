@@ -1,29 +1,24 @@
 package main.controls;
 
 import entity.control.Control;
+import main.interfaces.*;
 import javafx.application.Platform;
 import javafx.geometry.VPos;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.control.Button;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import main.Main;
-import main.menu.MenuComponent;
 import java.util.ArrayList;
 import main.SceneManager;
 
-public class ControlsComponent {
+public class ControlsComponent implements BackGroundMusic {
 	
 	private static final ClassLoader CLASS_LOADER = ControlsComponent.class.getClassLoader();
 	
@@ -37,7 +32,6 @@ public class ControlsComponent {
 	private Pane backgroundPane;
 	
 	private ArrayList<KeyComponent> list;
-	private Button backButton;
 	public ControlsComponent() {
 		
 		try {

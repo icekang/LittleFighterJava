@@ -1,11 +1,8 @@
 package main.charac;
 
-import entity.control.Control;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
 import javafx.application.Platform;
-import javafx.geometry.VPos;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -13,25 +10,14 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.control.Button;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import main.Main;
-import main.menu.MenuComponent;
-import main.menu.MenuHandler;
 import javafx.scene.input.KeyCode;
-
-import java.util.ArrayList;
 import main.SceneManager;
-import main.controls.ControlsComponent;
-import main.controls.KeyComponent;
+import main.exception.NotEnoughPlayersOrTeamsException;
 import entity.character.AllList;
-import entity.character.Players;
+import main.interfaces.*;
 
-public class CharComponent {
+public class CharComponent implements BackGroundMusic {
 	
 	private static final ClassLoader CLASS_LOADER = CharComponent.class.getClassLoader();
 	
@@ -121,17 +107,18 @@ public class CharComponent {
 		canvasFront.setOnMouseEntered(event -> SceneManager.getCharScene().setCursor(Cursor.HAND));
 		canvasFront.setOnMouseClicked(event -> 
 			{
-				if(AllList.hasWinner()==0) {
+				try {
+					AllList.ProceedArena();
 					this.stopSound();
 					this.startTransitionSound();
 					SceneManager.setArena();
 				}
-				else
+				catch(NotEnoughPlayersOrTeamsException e)
 				{
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("RESELECT");
 					alert.setHeaderText("Please verify your selection");
-					alert.setContentText("Must consist of at least 2 players from 2 different team");
+					alert.setContentText(e.getMessage());
 					alert.showAndWait();
 				}
 			});

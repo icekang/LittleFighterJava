@@ -1,6 +1,5 @@
 package skills;
 
-import entity.character.Character;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 

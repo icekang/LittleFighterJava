@@ -1,7 +1,6 @@
 package main.charac;
 
 import entity.character.Players;
-import entity.control.Control;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;

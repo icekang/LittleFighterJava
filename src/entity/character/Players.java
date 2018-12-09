@@ -4,7 +4,6 @@ import entity.control.Control;
 import skills.*;
 import javafx.scene.input.KeyCode;
 import main.arena.Arena;
-import javafx.scene.image.*;
 
 import java.util.*;
 public class Players {

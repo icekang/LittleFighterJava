@@ -7,7 +7,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import entity.character.Players;
 import entity.character.AllList;
-import javafx.scene.image.ImageView;
 
 public class PlayCard extends Pane {
 	Players player;

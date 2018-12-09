@@ -1,10 +1,13 @@
 package entity.character;
 
 import main.Main;
+import main.exception.*;
 import main.charac.PlayCard;
 import main.charac.PlayCardBot;
 import java.util.*;
 import main.arena.*;
+import javafx.scene.input.KeyCode;
+import skills.*;
 
 public class AllList {
 	public static Character[] charList=new Character[]{
@@ -23,14 +26,17 @@ public class AllList {
 			"696969"
 		};
 	public static PlayCard[] playCardList = new PlayCard[6];
-	public static TreeSet kList = new TreeSet();
-	public static ArrayList al,hm,acc,skill;
+	public static TreeSet<KeyCode> kList = new TreeSet<>();
+	public static ArrayList<Integer> al;
+	public static ArrayList<HMbar> hm;
+	public static ArrayList<ArenaChar> acc;
+	public static ArrayList<Skill> skill;
 	
 	public static void initAC() {
-		al=new ArrayList();
-		hm=new ArrayList();
-		acc=new ArrayList();
-		skill=new ArrayList();
+		al=new ArrayList<>();
+		hm=new ArrayList<>();
+		acc=new ArrayList<>();
+		skill=new ArrayList<>();
 		int g=0;
 		for(int i=0;i<6;i++) {
 			if(playerList[i].isActive())
@@ -74,6 +80,11 @@ public class AllList {
 		if(tList.size()==0)
 			return 1;
 		return 2;
+	}
+	
+	public static void ProceedArena() throws NotEnoughPlayersOrTeamsException {
+		if(AllList.hasWinner()!=0)
+			throw new NotEnoughPlayersOrTeamsException("Must consist of at least 2 players from 2 different team");
 	}
 	
 	public static ArrayList<Players> checkWinner() {

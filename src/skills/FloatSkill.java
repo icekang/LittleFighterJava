@@ -2,9 +2,7 @@ package skills;
 
 import entity.character.Players;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
-import main.Main;
 
 public class FloatSkill extends Skill {
 

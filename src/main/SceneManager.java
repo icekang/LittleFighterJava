@@ -2,9 +2,6 @@ package main;
 
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import main.menu.MenuComponent;
 import main.controls.ControlsComponent;
@@ -23,7 +20,7 @@ public class SceneManager {
 	public static void setMenuScene() {
 		if(menuScene==null)
 			menuScene = new Scene(MenuComponent.getInstance().getBackgroundPane(), Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
-		MenuComponent.getInstance().playSound();
+		MenuComponent.getInstance().startSound();
 		primaryStage.setScene(menuScene);
 		primaryStage.setOnCloseRequest(event -> {
 			MenuComponent.getInstance().stopSound();

@@ -1,24 +1,19 @@
 package main.menu;
 
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import main.Main;
-import main.SceneManager;
-import skills.SkillDetail;
+import main.interfaces.*;
 
-public class MenuComponent {
+public class MenuComponent implements BackGroundMusic {
 	
 	private static final ClassLoader CLASS_LOADER = MenuComponent.class.getClassLoader();
 	
@@ -118,7 +113,7 @@ public class MenuComponent {
 		backgroundPane.getChildren().addAll(screen, canvasVSMode, canvasControls, canvasExit);
 	}
 	
-	public void playSound() {
+	public void startSound() {
 		try { new Thread(() -> {
 			startMP = new MediaPlayer(START_SOUND);
 			startMP.setCycleCount(MediaPlayer.INDEFINITE);
