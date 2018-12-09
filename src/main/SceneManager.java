@@ -10,7 +10,7 @@ import main.menu.MenuComponent;
 import main.controls.ControlsComponent;
 import main.charac.CharComponent;
 import main.arena.Arena;
-import entity.character.allList;
+import entity.character.AllList;
 
 public class SceneManager {
 	private static Stage primaryStage;
@@ -43,8 +43,8 @@ public class SceneManager {
 				Arena.getInstance().ho(event.getCode());
 			});
 		}
-		allList.kList.clear();
-		allList.initAC();
+		AllList.kList.clear();
+		AllList.initAC();
 		Arena.getInstance().newArena();
 		primaryStage.setScene(arenaScene);
 		primaryStage.setOnCloseRequest(event -> {
@@ -83,7 +83,7 @@ public class SceneManager {
 		);
 		}
 		CharComponent.getInstance().startSound();
-		allList.initPlayCard();
+		AllList.initPlayCard();
 		CharComponent.getInstance().newRound();
 		primaryStage.setScene(charScene);
 		

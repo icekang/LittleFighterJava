@@ -1,13 +1,13 @@
 package main.charac;
 
-import entity.character.players;
+import entity.character.Players;
 import entity.control.Control;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import main.SceneManager;
 
-public class playCardBot extends playCard {
+public class PlayCardBot extends PlayCard {
 	
 	private Button Cplus;
 	private Button Cminus;
@@ -17,7 +17,7 @@ public class playCardBot extends playCard {
 	
 	private Button Activate;
 	
-	public playCardBot(players p,double posx,double posy,double width,double height) {
+	public PlayCardBot(Players p,double posx,double posy,double width,double height) {
 		super(p,posx,posy,width,height);
 		Cplus = new Button(">");
 		Cplus.setPrefWidth(width / 2);

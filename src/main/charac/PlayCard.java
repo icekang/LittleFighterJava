@@ -5,23 +5,23 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import entity.character.players;
-import entity.character.allList;
+import entity.character.Players;
+import entity.character.AllList;
 import javafx.scene.image.ImageView;
 
-public class playCard extends Pane {
-	players player;
+public class PlayCard extends Pane {
+	Players player;
 	private Button Cname;
 	private Button Team;
 	private ImageView iv;
-	public playCard(players p,double posx,double posy,double width,double height) {
+	public PlayCard(Players p,double posx,double posy,double width,double height) {
 		super();
 		player=p;
 		this.setLayoutX(posx);
 		this.setLayoutY(posy);
 		this.setPrefWidth(width);
 		this.setPrefHeight(height);
-		Cname = new Button(allList.charList[p.getCindex()].getName());
+		Cname = new Button(AllList.charList[p.getCindex()].getName());
 		Cname.setLayoutY(0);
 		Cname.setPrefWidth(width);
 		Cname.setStyle("-fx-focus-color: transparent;-fx-background-radius: 0;-fx-background-insets: 0;");
@@ -45,10 +45,10 @@ public class playCard extends Pane {
 	public void update()
 	{
 		if(player.isActive())
-			iv.setImage(allList.charList[player.getCindex()].getImage());
+			iv.setImage(AllList.charList[player.getCindex()].getImage());
 		else
 			iv.setImage(new Image("thumbs/not.jpg"));
-		Cname.setText(allList.charList[player.getCindex()].getName());
+		Cname.setText(AllList.charList[player.getCindex()].getName());
 		Team.setText(String.format("Team %d", player.getTeam()));
 	}
 }

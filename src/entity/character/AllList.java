@@ -1,19 +1,19 @@
 package entity.character;
 
 import main.Main;
-import main.charac.playCard;
-import main.charac.playCardBot;
+import main.charac.PlayCard;
+import main.charac.PlayCardBot;
 import java.util.*;
 import main.arena.*;
 
-public class allList {
+public class AllList {
 	public static Character[] charList=new Character[]{
 			new Character("Knight","knight.png"),
 			new Character("Jan","jan.png"),
 			new Character("Monk","monk.png"),
 			new Character("Sorcerer","sorcerer.png"),
 			new Character("Woody","woody.png")};
-	public static players[] playerList = new players[6];
+	public static Players[] playerList = new Players[6];
 	public static String[] teamcol = new String[] {
 			"DC143C",
 			"6B8E23",
@@ -22,7 +22,7 @@ public class allList {
 			"A0522D",
 			"696969"
 		};
-	public static playCard[] playCardList = new playCard[6];
+	public static PlayCard[] playCardList = new PlayCard[6];
 	public static TreeSet kList = new TreeSet();
 	public static ArrayList al,hm,acc,skill;
 	
@@ -46,9 +46,9 @@ public class allList {
 	public static void initPlayers() {
 		for(int i=0;i<6;i++) {
 			if(i<2)
-				playerList[i] = new players(String.format("Player %d", i+1),i,i);
+				playerList[i] = new Players(String.format("Player %d", i+1),i,i);
 			else
-				playerList[i] = new players(String.format("Bot %d",i-1),i,i);
+				playerList[i] = new Players(String.format("Bot %d",i-1),i,i);
 		}
 	}
 	
@@ -58,9 +58,9 @@ public class allList {
 			int width = 253, height = 339, playerMargin = width + 35;
 			double botRatio = 1.48;
 			if(i<2)
-				playCardList[i] = new playCard(playerList[i],Main.SCREEN_WIDTH / 2 - (playerMargin - width) / 2 - width + playerMargin*i,Main.SCREEN_HEIGHT / 20, width, height);
+				playCardList[i] = new PlayCard(playerList[i],Main.SCREEN_WIDTH / 2 - (playerMargin - width) / 2 - width + playerMargin*i,Main.SCREEN_HEIGHT / 20, width, height);
 			else
-				playCardList[i] = new playCardBot(playerList[i],Main.SCREEN_WIDTH / 2 - ((width / botRatio) + 15) * 3 / 2 - width / botRatio / 2+ ((width / botRatio) + 15)*(i-2),Main.SCREEN_HEIGHT * 12 / 20, width / botRatio, height / botRatio);
+				playCardList[i] = new PlayCardBot(playerList[i],Main.SCREEN_WIDTH / 2 - ((width / botRatio) + 15) * 3 / 2 - width / botRatio / 2+ ((width / botRatio) + 15)*(i-2),Main.SCREEN_HEIGHT * 12 / 20, width / botRatio, height / botRatio);
 		}
 	}
 	
@@ -76,8 +76,8 @@ public class allList {
 		return 2;
 	}
 	
-	public static ArrayList<players> checkWinner() {
-		ArrayList<players> x =new ArrayList<>();
+	public static ArrayList<Players> checkWinner() {
+		ArrayList<Players> x =new ArrayList<>();
 		TreeSet<Integer> tList = new TreeSet<>();
 		for(int i=0;i<6;i++)
 			if(playerList[i].isActive()&&playerList[i].getStatus()!=5)

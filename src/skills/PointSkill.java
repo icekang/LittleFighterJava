@@ -14,7 +14,7 @@ public class PointSkill extends Skill {
 		this.hit=true;
 	}
 	
-	public boolean checkhit(players p) {
+	public boolean checkhit(Players p) {
 		if(p.getStatus()!=5&&team!=p.getTeam()&&posx-rx<=p.getPosx()+42&&p.getPosx()+42<=posx+rx&&posy-ry<=p.getPosy()-42&&p.getPosy()-42<=posy+ry&&posz-rz<=p.getPosz()&&p.getPosz()<=posz+rz) {
 			if(blockable&&turn!=p.getTurn()&&p.getStatus()==1)
 				return false;

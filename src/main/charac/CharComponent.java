@@ -28,8 +28,8 @@ import java.util.ArrayList;
 import main.SceneManager;
 import main.controls.ControlsComponent;
 import main.controls.KeyComponent;
-import entity.character.allList;
-import entity.character.players;
+import entity.character.AllList;
+import entity.character.Players;
 
 public class CharComponent {
 	
@@ -48,13 +48,13 @@ public class CharComponent {
 	public void newRound() {
 		this.backgroundPane.getChildren().clear();
 		drawBackground();
-		this.backgroundPane.getChildren().addAll(allList.playCardList);
+		this.backgroundPane.getChildren().addAll(AllList.playCardList);
 		this.active=true;
 	}
 	
 	public void hh(KeyCode k) {
 		for(int i=0;i<6;i++)
-			allList.playCardList[i].handleKey(k);
+			AllList.playCardList[i].handleKey(k);
 	}
 	
 	public CharComponent() {
@@ -79,7 +79,7 @@ public class CharComponent {
                     	if(!active)
                     		return;
                     	for(int i=0;i<6;i++)
-        					allList.playCardList[i].update();
+        					AllList.playCardList[i].update();
                     }
                 };
                 while (true) {
@@ -121,7 +121,7 @@ public class CharComponent {
 		canvasFront.setOnMouseEntered(event -> SceneManager.getCharScene().setCursor(Cursor.HAND));
 		canvasFront.setOnMouseClicked(event -> 
 			{
-				if(allList.hasWinner()==0) {
+				if(AllList.hasWinner()==0) {
 					this.stopSound();
 					this.startTransitionSound();
 					SceneManager.setArena();

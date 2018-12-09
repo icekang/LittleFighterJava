@@ -9,13 +9,13 @@ import entity.character.*;
 
 public class HMbar extends Pane {
 	
-	private players pp;
+	private Players pp;
 	private ProgressBar hp;
 	private ProgressBar mp;
 	private ImageView iv;
 	private Button name;
 	
-	public HMbar(players p,int pos) {
+	public HMbar(Players p,int pos) {
 		super();
 		pp=p;
 		
@@ -27,7 +27,7 @@ public class HMbar extends Pane {
 		setLayoutY(10);setLayoutX(164 * pos + 4);
 		setPrefHeight(80);
 		setPrefWidth(160);
-		setStyle("-fx-background-color: #" + allList.teamcol[p.getTeam()]+";");
+		setStyle("-fx-background-color: #" + AllList.teamcol[p.getTeam()]+";");
 		hp = new ProgressBar();
 		hp.setProgress(0.5);
 		
@@ -45,7 +45,7 @@ public class HMbar extends Pane {
 		iv.setFitHeight(32);
 		iv.setFitWidth(32);
 		iv.setLayoutY(25);iv.setLayoutX(10);
-		iv.setImage(allList.charList[pp.getCindex()].getImage());
+		iv.setImage(AllList.charList[pp.getCindex()].getImage());
 		
 		this.getChildren().addAll(hp,mp,iv,name);
 	}

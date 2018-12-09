@@ -7,7 +7,7 @@ import main.arena.Arena;
 import javafx.scene.image.*;
 
 import java.util.*;
-public class players {
+public class Players {
 	private String name;
 	private int cindex;
 	private int team;
@@ -16,7 +16,7 @@ public class players {
 	private boolean active;
 	private int hp,mp,posx,posy,posz,bcd,turn,status,timeout;
 	
-	public players(String name,int pNum,int team) {
+	public Players(String name,int pNum,int team) {
 		Random ran = new Random();
 		this.name=name;
 		this.pNum=pNum;
@@ -52,8 +52,8 @@ public class players {
 	public void changeChar(int way) {
 		cindex+=way;
 		if(cindex<0)
-			cindex+=allList.charList.length;
-		cindex%=allList.charList.length;
+			cindex+=AllList.charList.length;
+		cindex%=AllList.charList.length;
 	}
 	
 	public void changeTeam(int way) {
@@ -130,59 +130,59 @@ public class players {
 		if(this.status!=0)
 			return;
 		int y = this.botMove();
-		if((allList.kList.contains(Control.allkey[pNum][Control.ACTIVATE])&&allList.kList.contains(Control.allkey[pNum][Control.JUMP])||y==1)&&this.jump==0) {
-			SkillDetail sd = allList.charList[this.getCindex()].getSKILL2();
+		if((AllList.kList.contains(Control.allkey[pNum][Control.ACTIVATE])&&AllList.kList.contains(Control.allkey[pNum][Control.JUMP])||y==1)&&this.jump==0) {
+			SkillDetail sd = AllList.charList[this.getCindex()].getSKILL2();
 			if(this.mp>=sd.mana) {
 				this.mp-=sd.mana;
 				PointSkill x = new PointSkill(team,sd.damage,turn,sd.mana,sd.body,sd.hit,posx+42+sd.range*turn,posy-42,posz,sd.rx,sd.ry,sd.rz,sd.blockable,sd.effdu,sd.startsound,sd.hitsound);
-				allList.skill.add(x);
+				AllList.skill.add(x);
 				Arena.getInstance().addChild(x);
 				this.status=4;
 				this.timeout=10;
 				return;
 			}
 		}
-		if((allList.kList.contains(Control.allkey[pNum][Control.ACTIVATE])&&allList.kList.contains(Control.allkey[pNum][Control.ATTACK])||y==2)&&this.jump==0) {
-			SkillDetail sd = allList.charList[this.getCindex()].getSKILL1();
+		if((AllList.kList.contains(Control.allkey[pNum][Control.ACTIVATE])&&AllList.kList.contains(Control.allkey[pNum][Control.ATTACK])||y==2)&&this.jump==0) {
+			SkillDetail sd = AllList.charList[this.getCindex()].getSKILL1();
 			if(this.mp>=sd.mana) {
 				this.mp-=sd.mana;
 				FloatSkill x = new FloatSkill(team,sd.damage,turn,sd.mana,sd.body,sd.hit,posx+42,posy-42,posz,sd.rx,sd.ry,sd.rz,sd.blockable,sd.range,sd.velo,sd.effdu,sd.startsound,sd.hitsound);
-				allList.skill.add(x);
+				AllList.skill.add(x);
 				Arena.getInstance().addChild(x);
 				this.status=3;
 				this.timeout=10;
 				return;
 			}
 		}
-		if((allList.kList.contains(Control.allkey[pNum][Control.ATTACK])||y==3)&&this.jump==0) {
-			SkillDetail sd = allList.charList[this.getCindex()].getATK();
+		if((AllList.kList.contains(Control.allkey[pNum][Control.ATTACK])||y==3)&&this.jump==0) {
+			SkillDetail sd = AllList.charList[this.getCindex()].getATK();
 			PointSkill x = new PointSkill(team,sd.damage,turn,sd.mana,sd.body,sd.hit,posx+42+sd.range*turn,posy-42,posz,sd.rx,sd.ry,sd.rz,sd.blockable,sd.effdu,sd.startsound,sd.hitsound);
-			allList.skill.add(x);
+			AllList.skill.add(x);
 			Arena.getInstance().addChild(x);
 			this.status=2;
 			this.timeout=10;
 			return;
 		}
-		if((allList.kList.contains(Control.allkey[pNum][Control.BLOCK])||y==4)&&this.jump==0&&this.bcd==0) {
+		if((AllList.kList.contains(Control.allkey[pNum][Control.BLOCK])||y==4)&&this.jump==0&&this.bcd==0) {
 			this.status=1;
 			this.timeout=10;
 			this.bcd=30;
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.RIGHT])||y==6) {
+		if(AllList.kList.contains(Control.allkey[pNum][Control.RIGHT])||y==6) {
 			this.turn=1;
 			this.move(10,0);
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.LEFT])||y==7) {
+		if(AllList.kList.contains(Control.allkey[pNum][Control.LEFT])||y==7) {
 			this.turn=-1;
 			this.move(-10,0);
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.UP])||y==8) {
+		if(AllList.kList.contains(Control.allkey[pNum][Control.UP])||y==8) {
 			this.move(0,10);
 		}
-		if(allList.kList.contains(Control.allkey[pNum][Control.DOWN])||y==9) {
+		if(AllList.kList.contains(Control.allkey[pNum][Control.DOWN])||y==9) {
 			this.move(0,-10);
 		}
-		if((allList.kList.contains(Control.allkey[pNum][Control.JUMP])||y==5)&&this.jump==0) {
+		if((AllList.kList.contains(Control.allkey[pNum][Control.JUMP])||y==5)&&this.jump==0) {
 			this.jump=1;
 		}
 	}

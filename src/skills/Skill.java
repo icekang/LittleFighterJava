@@ -99,6 +99,6 @@ public abstract class Skill extends Pane {
 		return dead&&tilldead==0;
 	}
 	
-	public abstract boolean checkhit(players p);
+	public abstract boolean checkhit(Players p);
 	public abstract void update();
 }

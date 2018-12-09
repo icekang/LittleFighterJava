@@ -3,7 +3,7 @@ package main.arena;
 import java.util.ArrayList;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
-import entity.character.allList;
+import entity.character.AllList;
 import entity.control.Control;
 import javafx.application.Platform;
 import javafx.geometry.VPos;
@@ -57,12 +57,12 @@ public class Arena {
 	private boolean fighting;
 
 	public void hh(KeyCode k) {
-		allList.kList.add(k);
+		AllList.kList.add(k);
 		
 	}
 	
 	public void ho(KeyCode k) {
-		allList.kList.remove(k);
+		AllList.kList.remove(k);
 	}
 	
 	public Arena() {
@@ -102,40 +102,40 @@ public class Arena {
                     public void run() {
                     	if(!fighting)
                     		return;
-                    	for(int i=allList.skill.size()-1;i>=0;i--)
+                    	for(int i=AllList.skill.size()-1;i>=0;i--)
                     	{
-                    		if(!((Skill)allList.skill.get(i)).isdead()) {
-	                    		if(allList.skill.get(i).getClass().equals(PointSkill.class))
+                    		if(!((Skill)AllList.skill.get(i)).isdead()) {
+	                    		if(AllList.skill.get(i).getClass().equals(PointSkill.class))
 	                    		{
-	                    			for(int i2=0;i2<allList.al.size();i2++)
-	                    				((PointSkill)allList.skill.get(i)).checkhit(allList.playerList[(int)allList.al.get(i2)]);
-	                    			((PointSkill)allList.skill.get(i)).sigDead();
+	                    			for(int i2=0;i2<AllList.al.size();i2++)
+	                    				((PointSkill)AllList.skill.get(i)).checkhit(AllList.playerList[(int)AllList.al.get(i2)]);
+	                    			((PointSkill)AllList.skill.get(i)).sigDead();
 	                    		}
 	                    		else
 	                    		{
-	                    			for(int i2=0;i2<allList.al.size();i2++)
-	                    				if(((FloatSkill)allList.skill.get(i)).checkhit(allList.playerList[(int)allList.al.get(i2)])) {
-	                    					((FloatSkill)allList.skill.get(i)).sigDead();
+	                    			for(int i2=0;i2<AllList.al.size();i2++)
+	                    				if(((FloatSkill)AllList.skill.get(i)).checkhit(AllList.playerList[(int)AllList.al.get(i2)])) {
+	                    					((FloatSkill)AllList.skill.get(i)).sigDead();
 	                    				}
 	                    		}
                     		}
-                    		((Skill)allList.skill.get(i)).update();
-                    		if(((Skill)allList.skill.get(i)).des())
+                    		((Skill)AllList.skill.get(i)).update();
+                    		if(((Skill)AllList.skill.get(i)).des())
                     		{
-                    			Arena.getInstance().remChild((Node)allList.skill.get(i));
-                    			allList.skill.remove(i);
+                    			Arena.getInstance().remChild((Node)AllList.skill.get(i));
+                    			AllList.skill.remove(i);
                     		}
                     	}
-                    	for(int i=0;i<allList.al.size();i++)
-                			allList.playerList[(int)allList.al.get(i)].handleCommand();
-                    	for(int i=0;i<allList.al.size();i++)
+                    	for(int i=0;i<AllList.al.size();i++)
+                			AllList.playerList[(int)AllList.al.get(i)].handleCommand();
+                    	for(int i=0;i<AllList.al.size();i++)
                     	{
-                    		((HMbar)allList.hm.get(i)).gameUpdate();
-                    		((ArenaChar)allList.acc.get(i)).gameUpdate();
-                    		allList.playerList[(int)allList.al.get(i)].gameUpdate();
+                    		((HMbar)AllList.hm.get(i)).gameUpdate();
+                    		((ArenaChar)AllList.acc.get(i)).gameUpdate();
+                    		AllList.playerList[(int)AllList.al.get(i)].gameUpdate();
                     	}
                     	
-                    	if(allList.hasWinner()==1) {
+                    	if(AllList.hasWinner()==1) {
                     		resultCanvas.setVisible(true);
                     		System.out.println("DRAW");
                     		resultCanvas.setLayoutX(0);
@@ -162,7 +162,7 @@ public class Arena {
             					SceneManager.setMenuScene();
         					});
         				}
-        				else if(allList.hasWinner()==2)
+        				else if(AllList.hasWinner()==2)
         				{
         					resultCanvas.setVisible(true);
         					//System.out.println("WINNER");
@@ -179,7 +179,7 @@ public class Arena {
         					gc.fillText("WINNER" , resultCanvas.getWidth() / 2, resultCanvas.getHeight() / 2);
         					
         					gc.setFont(Font.font("Minecraft", 50));
-        					gc.fillText(allList.checkWinner().get(0).getName() , resultCanvas.getWidth() / 2, resultCanvas.getHeight() * 3 / 4);
+        					gc.fillText(AllList.checkWinner().get(0).getName() , resultCanvas.getWidth() / 2, resultCanvas.getHeight() * 3 / 4);
         					
         					backgroundPane.getChildren().clear();
         					backgroundPane.getChildren().add(iv);
@@ -212,8 +212,8 @@ public class Arena {
 	public void newArena() {
 		backgroundPane.getChildren().clear();
 		backgroundPane.getChildren().add(iv);
-		backgroundPane.getChildren().addAll(allList.hm);
-		backgroundPane.getChildren().addAll(allList.acc);
+		backgroundPane.getChildren().addAll(AllList.hm);
+		backgroundPane.getChildren().addAll(AllList.acc);
 		fighting=true;
 	}
 	

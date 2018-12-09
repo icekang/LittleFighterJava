@@ -1,6 +1,6 @@
 package skills;
 
-import entity.character.players;
+import entity.character.Players;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
@@ -22,7 +22,7 @@ public class FloatSkill extends Skill {
 	}
 	
 	@Override
-	public boolean checkhit(players p) {
+	public boolean checkhit(Players p) {
 		if(posx<0||posx>main.Main.SCREEN_WIDTH||range==0)
 			return true;
 		if(p.getStatus()!=5&&team!=p.getTeam()&&posx-rx<=p.getPosx()+42&&p.getPosx()+42<=posx+rx&&posy-ry<=p.getPosy()-42&&p.getPosy()-42<=posy+ry&&posz-rz<=p.getPosz()&&p.getPosz()<=posz+rz) {
